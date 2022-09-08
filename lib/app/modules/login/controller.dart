@@ -1,0 +1,66 @@
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:larifood_app/app/data/models/logged_user.dart';
+import 'package:larifood_app/app/data/repository/user_repository.dart';
+import 'package:larifood_app/app/routes/routes.dart';
+
+class LoginController extends GetxController {
+  @override
+  void onInit() async {
+    final box = GetStorage();
+    var token = box.read('token') as String;
+    if (token != '') {
+      var response = await repository.getDataAboutMe(token);
+      var responseMap = response as Map<String, dynamic>;
+      responseMap['token'] = {};
+      responseMap['token']['token'] = token;
+      Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
+      Get.toNamed(Routes.DASHBOARD);
+    }
+
+    super.onInit();
+  }
+
+  var email = TextEditingController().obs;
+  var password = TextEditingController().obs;
+
+  var isFilled = RxBool(false);
+  var isHide = RxBool(true);
+  var isLoading = RxBool(false);
+
+  final box = GetStorage();
+
+  formIsFilled() {
+    isFilled.value =
+        email.value.text.isNotEmpty && password.value.text.isNotEmpty;
+  }
+
+  final UserRepository repository;
+
+  LoginController(this.repository);
+
+  login() async {
+    try {
+      isLoading.value = true;
+      Map<String, dynamic> map = {
+        'email': email.value.text,
+        'password': password.value.text,
+      };
+      var response = await repository.login(map);
+
+      Get.put(LoggedUser.fromJson(response as Map<String, dynamic>));
+
+      box.write('token', response['token']['token']);
+
+      Get.toNamed(Routes.DASHBOARD);
+      isLoading.value = false;
+    } catch (e) {
+      isLoading.value = false;
+    }
+  }
+
+  togglePassword() {
+    isHide.value = !isHide.value;
+  }
+}
