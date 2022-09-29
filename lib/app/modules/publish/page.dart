@@ -40,21 +40,28 @@ class PublishPage extends GetView<PublishController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const LabelRecipe(label: 'Foto'),
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.photo,
-                        color: Colors.red,
-                        size: 36,
+                  Obx(
+                    () => GestureDetector(
+                      onTap: controller.pickImage,
+                      child: Container(
+                        width: 120,
+                        height: 120,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
+                          ),
+                        ),
+                        child: controller.image.value.path != ''
+                            ? Image.file(controller.image.value)
+                            : const Center(
+                                child: Icon(
+                                  Icons.photo,
+                                  color: Colors.red,
+                                  size: 36,
+                                ),
+                              ),
                       ),
                     ),
                   ),
@@ -101,6 +108,18 @@ class PublishPage extends GetView<PublishController> {
                       ),
                     ],
                   ),
+                  const LabelRecipe(label: 'Visibilidade da receita'),
+                  Obx(
+                    () => CheckboxListTile(
+                      value: controller.isPrivate.value,
+                      contentPadding: EdgeInsets.zero,
+                      onChanged: controller.togglePrivacy,
+                      checkColor: Colors.white,
+                      activeColor: Colors.red,
+                      title: Text('Pública'),
+                      controlAffinity: ListTileControlAffinity.leading,
+                    ),
+                  ),
                   const LabelRecipe(label: 'Ingredientes'),
                   Obx(
                     () => ListView.builder(
@@ -124,21 +143,24 @@ class PublishPage extends GetView<PublishController> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  controller.ingredientsList.add(
-                                    Ingredient(
-                                      name: controller.ingredient.value.text,
-                                      qtd: int.parse(
-                                          controller.ingredientQtd.value.text),
-                                      qtd_units_id:
-                                          controller.ingredientsUnitsMap[
-                                              controller.selectedIngredientUnit
-                                                  .value]!,
-                                    ),
-                                  );
-                                  controller.ingredient.value.clear();
-                                  controller.ingredientQtd.value.clear();
-                                  controller.selectedIngredientUnit.value =
-                                      null;
+                                  if (_formKey.currentState!.validate()) {
+                                    controller.ingredientsList.add(
+                                      Ingredient(
+                                        name: controller.ingredient.value.text,
+                                        qtd: int.parse(controller
+                                            .ingredientQtd.value.text),
+                                        qtd_units_id:
+                                            controller.ingredientsUnitsMap[
+                                                controller
+                                                    .selectedIngredientUnit
+                                                    .value]!,
+                                      ),
+                                    );
+                                    controller.ingredient.value.clear();
+                                    controller.ingredientQtd.value.clear();
+                                    controller.selectedIngredientUnit.value =
+                                        null;
+                                  }
                                 },
                                 child: const Text('+ Adicionar ingrediente'),
                               ),
@@ -183,6 +205,7 @@ class PublishPage extends GetView<PublishController> {
                                     PrepareMode(
                                       description:
                                           controller.prepareMode.value.text,
+                                      order: index,
                                     ),
                                   );
                                   controller.prepareMode.value.clear();
@@ -214,6 +237,8 @@ class PublishPage extends GetView<PublishController> {
                         onPressed: controller.printRecipe,
                         formKey: _formKey,
                         label: 'Publicar',
+                        conditionalValidate:
+                            controller.ingredientsList.isNotEmpty,
                       ),
                     ),
                   ),

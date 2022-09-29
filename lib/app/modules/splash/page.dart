@@ -6,7 +6,9 @@ class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('SplashPage')),
-        body: SafeArea(child: Text('SplashController')));
+      body: SafeArea(
+        child: Center(child: Image.asset('assets/images/logo.png')),
+      ),
+    );
   }
 }

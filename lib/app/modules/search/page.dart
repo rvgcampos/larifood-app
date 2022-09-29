@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/modules/search/controller.dart';
+import 'package:larifood_app/app/modules/search/widgets/recipe_component.dart';
+import 'package:larifood_app/app/modules/search/widgets/user_component.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/widgets/input_field_dropdown.dart';
 
@@ -20,93 +22,52 @@ class SearchPage extends GetView<SearchController> {
                   hintText: 'Pesquisar',
                   controller: controller.search.value,
                   icon: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      controller.makeSearch();
+                    },
                     child: const Icon(
                       Icons.search,
                       color: Colors.red,
                     ),
                   ),
                 ),
-                InputFieldDropdown(
-                  value: controller.selectedTypeSearch,
-                  values: [
-                    'Usuários',
-                    'Receitas pelo nome',
-                    'Receitas por ingredientes'
-                  ],
-                  hintText: 'Escolha o tipo de pesquisa',
+                Obx(
+                  () => InputFieldDropdown(
+                    value: controller.selectedSearchType,
+                    values: controller.searchTypes.value,
+                    hintText: 'Escolha o tipo de pesquisa',
+                  ),
                 ),
-                ListView.builder(
-                  itemCount: 10,
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
-                          child: Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  imageUrl,
-                                  width: 100,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Brownie',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    Text(
-                                      'Nada melhor do que um picadinho de carne num almoço de sábado',
-                                      softWrap: true,
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                    Row(
-                                      children: [
-                                        CircleAvatar(
-                                          radius: 10,
-                                          backgroundImage:
-                                              NetworkImage(imageUrl),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Text(
-                                          'max',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
+                // ElevatedButton(
+                //   onPressed: () {
+                //     print(controller.selectedSearchType);
+                //     print(controller.search.value.text);
+                //   },
+                //   child: Text('teste'),
+                // ),
+                Obx(
+                  () {
+                    if (controller.selectedSearchType.value == 'Usuários') {
+                      return ListView.builder(
+                        itemCount: controller.users.length,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          var user = controller.users[index];
+                          return UserComponent(user: user);
+                        },
+                      );
+                    } else {
+                      return ListView.builder(
+                        itemCount: controller.recipes.length,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          var recipe = controller.recipes[index];
+                          return RecipeComponent(recipe: recipe);
+                        },
+                      );
+                    }
                   },
                 ),
               ],

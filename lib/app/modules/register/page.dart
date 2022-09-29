@@ -37,6 +37,12 @@ class RegisterPage extends GetView<RegisterController> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 InputField(
+                  controller: controller.name.value,
+                  hintText: 'Informe o nome',
+                  validationBuilder: ValidationBuilder().minLength(3),
+                  autofocus: true,
+                ),
+                InputField(
                   controller: controller.email.value,
                   hintText: 'Informe o e-mail',
                   validationBuilder: ValidationBuilder().email().maxLength(50),

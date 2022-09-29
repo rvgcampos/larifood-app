@@ -120,14 +120,6 @@ class ReelsPage extends GetView<ReelsController> {
                                         Icons.favorite,
                                         color: Colors.red,
                                       ),
-                                      Icon(
-                                        Icons.comment,
-                                        color: Colors.red,
-                                      ),
-                                      Icon(
-                                        Icons.bookmark,
-                                        color: Colors.red,
-                                      ),
                                     ],
                                   )
                                 ],

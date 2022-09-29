@@ -7,6 +7,10 @@ abstract class Routes {
   static const LOGIN = '/login';
   static const FORGOT_PASSWORD = '/forgot-password';
   static const PUBLISH = '/publish';
+  static const RECIPE = '/recipe';
   static const REELS = '/reels';
   static const PROFILE = '/profile';
+  static const ANOTHER_PROFILE = '/another-profile';
+  static const UPDATE_PROFILE = '/update-profile';
+  static const BOOKMARK = '/bookmark';
 }

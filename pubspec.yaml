@@ -36,7 +36,10 @@ dependencies:
   get_storage: ^2.0.3
   intl: ^0.17.0
   transparent_image: ^2.0.0
+  image_picker: ^0.8.5+3
+  jiffy: ^5.0.0
   form_validator: ^1.0.2
+  http: ^0.13.5
 
 
   # The following adds the Cupertino Icons font to your application.

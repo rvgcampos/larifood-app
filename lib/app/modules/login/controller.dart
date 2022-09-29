@@ -6,21 +6,26 @@ import 'package:larifood_app/app/data/repository/user_repository.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class LoginController extends GetxController {
-  @override
-  void onInit() async {
-    final box = GetStorage();
-    var token = box.read('token') as String;
-    if (token != '') {
-      var response = await repository.getDataAboutMe(token);
-      var responseMap = response as Map<String, dynamic>;
-      responseMap['token'] = {};
-      responseMap['token']['token'] = token;
-      Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
-      Get.toNamed(Routes.DASHBOARD);
-    }
+  // @override
+  // void onInit() async {
+  //   final box = GetStorage();
 
-    super.onInit();
-  }
+  //   if (box.read('token') != null) {
+  //     var token = box.read('token') as String;
+  //     if (token != '') {
+  //       var response = await repository.getDataAboutMe(token);
+  //       if (response != null) {
+  //         var responseMap = response as Map<String, dynamic>;
+  //         responseMap['token'] = {};
+  //         responseMap['token']['token'] = token;
+  //         Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
+  //         Get.toNamed(Routes.DASHBOARD);
+  //       }
+  //     }
+  //   }
+
+  //   super.onInit();
+  // }
 
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;

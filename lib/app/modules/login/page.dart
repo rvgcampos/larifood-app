@@ -72,20 +72,20 @@ class LoginPage extends GetView<LoginController> {
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.FORGOT_PASSWORD);
-                        },
-                        child: Text(
-                          'Esqueceu a senha? Clique aqui',
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Get.toNamed(Routes.FORGOT_PASSWORD);
+                      //   },
+                      //   child: Text(
+                      //     'Esqueceu a senha? Clique aqui',
+                      //     textAlign: TextAlign.end,
+                      //     style: TextStyle(
+                      //       color: Colors.red,
+                      //       fontSize: 18,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   ),
+                      // ),
                       Obx(
                         () => controller.isLoading.value
                             ? ActionButton(

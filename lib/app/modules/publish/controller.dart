@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:larifood_app/app/data/models/ingredient.dart';
 import 'package:larifood_app/app/data/models/logged_user.dart';
 import 'package:larifood_app/app/data/models/prepare_mode.dart';
 import 'package:larifood_app/app/data/providers/recipe.dart';
-import 'package:larifood_app/app/data/providers/user.dart';
 import 'package:larifood_app/app/data/providers/utils.dart';
+import 'package:http/http.dart' as http;
+import 'package:larifood_app/app/routes/routes.dart';
 
 class PublishController extends GetxController {
   @override
@@ -52,7 +56,10 @@ class PublishController extends GetxController {
   var ingredientsUnitsMap = <String, int>{}.obs;
   var selectedIngredientUnit = Rxn<String>();
 
+  var image = File('').obs;
+
   var isFilled = RxBool(false);
+  var isPrivate = RxBool(true);
 
   final RecipeApi recipeApi;
   final UtilsApi utilsApi;
@@ -64,6 +71,10 @@ class PublishController extends GetxController {
         selectedCategory.value != null &&
         timeRecipe.value.text.isNotEmpty &&
         selectedTimeUnit.value != null;
+  }
+
+  void togglePrivacy(bool? newValue) {
+    isPrivate.value = newValue!;
   }
 
   printIngredientsList() {
@@ -86,13 +97,24 @@ class PublishController extends GetxController {
     });
   }
 
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+      this.image.value = imageTemp;
+    } catch (e) {
+      print(e);
+    }
+  }
+
   printRecipe() async {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = nameRecipe.value.text;
     data['prepareTime'] = int.parse(timeRecipe.value.text);
     data['userId'] = loggedUserUser.id;
     data['prepareTimeUnitId'] = timeUnitsMap[selectedTimeUnit.value];
-    data['isPrivate'] = false;
+    data['isPrivate'] = isPrivate.value;
     data['categoryId'] = categoriesMap[selectedCategory.value];
     List ingredientsToSend = [];
     ingredientsList.forEach((element) {
@@ -104,8 +126,35 @@ class PublishController extends GetxController {
       prepareModeToSend.add(element.toJson());
     });
     data['prepareModes'] = prepareModeToSend;
-    print(data);
-    await recipeApi.storeRecipe(data);
+    // print(data);
+    var response = await recipeApi.storeRecipe(data);
+    print(response);
+
+    // int index = image.value.path.indexOf('/cache/');
+    // print(image.value.path.substring(index + 7));
+
+    var idRecipe = response['recipe']['id'];
+
+    // MultipartFile file = MultipartFile(
+    //   await image.value.readAsBytes(),
+    //   filename: image.value.path.substring(index + 7),
+    // );
+
+    // FormData form = FormData({});
+    // form.fields.add(MapEntry('recipeId', idRecipe.toString()));
+    // form.files.add(MapEntry('file', file));
+    // var responsePhoto = await recipeApi.addPhoto(form);
+    // print(responsePhoto);
+
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('http://192.168.1.106:3333/photo/recipe'));
+    request.files
+        .add(await http.MultipartFile.fromPath('file', image.value.path));
+
+    request.fields['idRecipe'] = idRecipe.toString();
+    var res = await request.send();
+    print(res.reasonPhrase);
+    Get.toNamed(Routes.DASHBOARD);
   }
 
   var prepareModesList = <PrepareMode>[].obs;

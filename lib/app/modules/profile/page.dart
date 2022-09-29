@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:larifood_app/app/data/models/own_profile.dart';
 import 'package:larifood_app/app/modules/profile/controller.dart';
+import 'package:larifood_app/app/routes/routes.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   @override
@@ -9,12 +11,16 @@ class ProfilePage extends GetView<ProfileController> {
         "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          controller.loggedUserUser.username,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 28,
-            color: Colors.black87,
+        title: Obx(
+          () => Text(
+            controller.ownProfile.value == null
+                ? ''
+                : controller.ownProfile.value!.username,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 28,
+              color: Colors.black87,
+            ),
           ),
         ),
         actions: [
@@ -22,13 +28,37 @@ class ProfilePage extends GetView<ProfileController> {
             padding: const EdgeInsets.only(right: 20),
             child: GestureDetector(
               onTap: () {
+                Get.toNamed(Routes.BOOKMARK);
+              },
+              child: const Icon(
+                Icons.bookmark,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.UPDATE_PROFILE, arguments: [
+                  {'user': controller.ownProfile.value}
+                ]);
+              },
+              child: const Icon(
+                Icons.settings,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: () {
                 controller.logout();
               },
-              child: Icon(
+              child: const Icon(
                 Icons.logout,
               ),
             ),
-          )
+          ),
         ],
       ),
       body: SafeArea(
@@ -40,20 +70,44 @@ class ProfilePage extends GetView<ProfileController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(imageUrl),
-                      backgroundColor: Colors.transparent,
+                    Obx(
+                      () {
+                        if (controller.ownProfile.value != null) {
+                          if (controller.ownProfile.value!.avatar != null) {
+                            return CircleAvatar(
+                              radius: 50,
+                              backgroundImage: NetworkImage(
+                                  controller.ownProfile.value!.avatar!),
+                              backgroundColor: Colors.transparent,
+                            );
+                          } else {
+                            return Icon(
+                              Icons.person,
+                              size: 100,
+                            );
+                          }
+                        } else {
+                          return Container();
+                        }
+                      },
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     Column(
                       children: [
-                        Text(
-                          '15',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                        Obx(
+                          () => Text(
+                            controller.ownProfile.value == null
+                                ? ''
+                                : controller
+                                    .ownProfile.value!.count.recipesCount
+                                    .toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
                         Text(
                           'Receitas',
@@ -63,10 +117,16 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     Column(
                       children: [
-                        Text(
-                          '229',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                        Obx(
+                          () => Text(
+                            controller.ownProfile.value == null
+                                ? ''
+                                : controller
+                                    .ownProfile.value!.count.followerCount
+                                    .toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
                         ),
                         Text(
                           'Seguidores',
@@ -76,10 +136,16 @@ class ProfilePage extends GetView<ProfileController> {
                     ),
                     Column(
                       children: [
-                        Text(
-                          '15',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14),
+                        Obx(
+                          () => Text(
+                            controller.ownProfile.value == null
+                                ? ''
+                                : controller
+                                    .ownProfile.value!.count.followingCount
+                                    .toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
                         ),
                         Text(
                           'Seguindo',
@@ -97,41 +163,76 @@ class ProfilePage extends GetView<ProfileController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Renato Vinicius',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Obx(
+                        () => Text(
+                          controller.ownProfile.value == null
+                              ? ''
+                              : controller.ownProfile.value!.name,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Text(
-                        'Chefe de cozinha profissional',
+                      Obx(
+                        () => Text(
+                          controller.ownProfile.value == null
+                              ? ''
+                              : controller.ownProfile.value!.description,
+                        ),
                       )
                     ],
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 20,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 20,
-                  ),
-                  itemBuilder: (ctx, index) {
-                    return Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(imageUrl),
+              Obx(
+                () => controller.ownProfile.value != null
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount:
+                              controller.ownProfile.value!.recipes.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 20,
+                          ),
+                          itemBuilder: (ctx, index) {
+                            var recipe =
+                                controller.ownProfile.value!.recipes[index];
+                            return Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(Routes.RECIPE, arguments: [
+                                      {'id': recipe.id}
+                                    ]);
+                                  },
+                                  child: SizedBox(
+                                    height: 80,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: recipe.avatar == null
+                                          ? const Icon(
+                                              Icons.image_outlined,
+                                              size: 60,
+                                            )
+                                          : Image.network(
+                                              recipe.avatar!,
+                                              width: 100,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  recipe.name,
+                                )
+                              ],
+                            );
+                          },
                         ),
-                        Text(
-                          'Receita',
-                        )
-                      ],
-                    );
-                  },
-                ),
+                      )
+                    : Container(),
               )
             ],
           ),
