@@ -4,8 +4,8 @@ import 'package:larifood_app/app/modules/recipe/controller.dart';
 import 'package:larifood_app/app/modules/recipe/widgets/ingredient_component.dart';
 import 'package:larifood_app/app/modules/recipe/widgets/label.dart';
 import 'package:larifood_app/app/modules/recipe/widgets/prepare_mode_component.dart';
-import 'package:larifood_app/app/widgets/action_button.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
+import 'package:larifood_app/app/routes/routes.dart';
 
 class RecipePage extends GetView<RecipeController> {
   @override
@@ -34,9 +34,15 @@ class RecipePage extends GetView<RecipeController> {
                       if (val == 'Excluir') {
                         controller.deleteRecipe();
                       }
+
+                      if (val == 'Editar') {
+                        Get.toNamed(Routes.UPDATE_RECIPE, arguments: [
+                          {'id': controller.recipe.value!.id}
+                        ]);
+                      }
                     },
                     itemBuilder: (BuildContext context) {
-                      return {'Excluir'}.map((String choice) {
+                      return {'Editar', 'Excluir'}.map((String choice) {
                         return PopupMenuItem<String>(
                           value: choice,
                           child: Text(choice),
@@ -234,16 +240,18 @@ class RecipePage extends GetView<RecipeController> {
                                       ],
                                     ),
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      controller
-                                          .deleteComment(comment.id.toString());
-                                    },
-                                    child: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    ),
-                                  )
+                                  controller.loggedUserUser.id == comment.id
+                                      ? GestureDetector(
+                                          onTap: () {
+                                            controller.deleteComment(
+                                                comment.id.toString());
+                                          },
+                                          child: Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
+                                        )
+                                      : Container()
                                   // Column(
                                   //   children: [
                                   //     Icon(

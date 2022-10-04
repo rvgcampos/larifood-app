@@ -14,6 +14,9 @@ class HomeController extends GetxController {
     for (var recipe in response['recipes']) {
       recipesList.add(RecipeFeedChronological.fromJson(recipe).obs);
     }
+
+    print('avatar');
+    print(loggedUserUser.avatar);
     super.onInit();
   }
 

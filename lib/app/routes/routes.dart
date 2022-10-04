@@ -13,4 +13,5 @@ abstract class Routes {
   static const ANOTHER_PROFILE = '/another-profile';
   static const UPDATE_PROFILE = '/update-profile';
   static const BOOKMARK = '/bookmark';
+  static const UPDATE_RECIPE = '/update-recipe';
 }

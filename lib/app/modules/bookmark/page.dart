@@ -9,7 +9,7 @@ class BookmarkPage extends GetView<BookmarkController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Favoritos',
+          'Favoritas',
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,

@@ -12,21 +12,29 @@ class SplashController extends GetxController {
       var token = box.read('token') as String;
       if (token != '') {
         var response = await repository.getDataAboutMe(token);
-        if (response != null) {
+        print(response);
+        if (response['code'] != 'BAD_REQUEST') {
           var responseMap = response as Map<String, dynamic>;
           responseMap['token'] = {};
           responseMap['token']['token'] = token;
           Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
           Get.toNamed(Routes.DASHBOARD);
+        } else {
+          isInvalidToken = true;
         }
       }
       super.onInit();
     }
   }
 
+  var isInvalidToken = false;
+
   @override
   void onReady() {
-    if (box.read('token') == null || box.read('token') == '') {
+    print(isInvalidToken);
+    if (box.read('token') == null ||
+        box.read('token') == '' ||
+        isInvalidToken == true) {
       Get.toNamed(Routes.LOGIN);
     }
     super.onReady();

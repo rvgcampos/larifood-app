@@ -18,11 +18,11 @@ class Ingredient {
         qtd_unit: json['qtdUnit']['name'],
       );
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson([bool isUpdate = false, dynamic newValue]) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['qtd'] = this.qtd;
-    data['qtd_unit'] = this.qtd_unit;
+    data['qtd_units_id'] = isUpdate ? newValue : this.qtd_unit;
     return data;
   }
 }

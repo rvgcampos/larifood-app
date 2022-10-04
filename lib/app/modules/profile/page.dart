@@ -195,6 +195,7 @@ class ProfilePage extends GetView<ProfileController> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             crossAxisSpacing: 20,
+                            mainAxisExtent: 120
                           ),
                           itemBuilder: (ctx, index) {
                             var recipe =
@@ -224,8 +225,15 @@ class ProfilePage extends GetView<ProfileController> {
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  recipe.name,
+                                SizedBox(
+                                  height: 40,
+                                  child: Text(
+                                    recipe.name,
+                                    // style: TextStyle(fontSize: 10),
+                                    softWrap: true,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 )
                               ],
                             );

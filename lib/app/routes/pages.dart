@@ -17,6 +17,8 @@ import 'package:larifood_app/app/modules/splash/binding.dart';
 import 'package:larifood_app/app/modules/splash/page.dart';
 import 'package:larifood_app/app/modules/update_profile/binding.dart';
 import 'package:larifood_app/app/modules/update_profile/page.dart';
+import 'package:larifood_app/app/modules/update_recipe/binding.dart';
+import 'package:larifood_app/app/modules/update_recipe/page.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 abstract class AppPages {
@@ -65,6 +67,11 @@ abstract class AppPages {
       name: Routes.BOOKMARK,
       page: () => BookmarkPage(),
       binding: BookmarkBinding(),
+    ),
+    GetPage(
+      name: Routes.UPDATE_RECIPE,
+      page: () => UpdateRecipePage(),
+      binding: UpdateRecipeBinding(),
     ),
   ];
 }

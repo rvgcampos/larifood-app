@@ -52,11 +52,15 @@ class LoginController extends GetxController {
         'email': email.value.text,
         'password': password.value.text,
       };
-      var response = await repository.login(map);
+      var responseLogin = await repository.login(map);
 
-      Get.put(LoggedUser.fromJson(response as Map<String, dynamic>));
+      // var response =
+      //     await repository.getDataAboutMe(responseLogin['token']['token']);
+      // print(response);
 
-      box.write('token', response['token']['token']);
+      Get.put(LoggedUser.fromJson(responseLogin as Map<String, dynamic>));
+
+      box.write('token', responseLogin['token']['token']);
 
       Get.toNamed(Routes.DASHBOARD);
       isLoading.value = false;

@@ -42,4 +42,10 @@ class RecipeApi extends Api {
 
     return response.body;
   }
+
+  Future<dynamic> updateRecipe(String id, Map<String, dynamic> map) async {
+    var response = errorHandler(await put('/recipes/$id', map));
+
+    return response.body;
+  }
 }

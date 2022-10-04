@@ -19,6 +19,7 @@ class PrepareMode {
     final Map<String, dynamic> data = new Map<String, dynamic>();
 
     data['description'] = this.description;
+    data['order'] = order;
     return data;
   }
 }

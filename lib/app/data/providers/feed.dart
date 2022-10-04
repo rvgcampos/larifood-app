@@ -10,4 +10,10 @@ class FeedApi extends Api {
 
     return response.body;
   }
+
+  Future<dynamic> recommendativeFeed() async {
+    var response = errorHandler(await get('/recomendative-feed'));
+
+    return response.body;
+  }
 }

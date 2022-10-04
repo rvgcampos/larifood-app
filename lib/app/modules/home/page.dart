@@ -156,8 +156,8 @@ class HomePage extends GetView<HomeController> {
                                           },
                                           child: Icon(
                                             recipe.value.usersLikes
-                                                ? Icons.favorite_border_outlined
-                                                : Icons.favorite,
+                                                ? Icons.favorite
+                                                : Icons.favorite_border_outlined,
                                             color: Colors.red,
                                           ),
                                         ),
