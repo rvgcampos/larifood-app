@@ -19,6 +19,11 @@ class UserRepository {
     await api.recoveryPassword(map);
   }
 
+   Future reset(Map<String, dynamic> map) async {
+    return await api.resetPassword(map);
+  }
+
+
   Future getDataAboutMe(String token) async {
     var response = await api.getDataAboutMe(token);
     return response;

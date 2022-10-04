@@ -37,6 +37,15 @@ class UserApi extends Api {
     return response.body;
   }
 
+  Future<dynamic> resetPassword(Map<String, dynamic> map) async {
+    var response = errorHandler(await post('/reset-password', {
+      "token": map['token'],
+      "password": map['password'],
+    }));
+
+    return response.body;
+  }
+
   Future getDataAboutMe(String token) async {
     var response = errorHandler(await get(
       '/users',

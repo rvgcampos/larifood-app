@@ -13,6 +13,8 @@ import 'package:larifood_app/app/modules/recipe/binding.dart';
 import 'package:larifood_app/app/modules/recipe/page.dart';
 import 'package:larifood_app/app/modules/register/binding.dart';
 import 'package:larifood_app/app/modules/register/page.dart';
+import 'package:larifood_app/app/modules/reset_password/binding.dart';
+import 'package:larifood_app/app/modules/reset_password/page.dart';
 import 'package:larifood_app/app/modules/splash/binding.dart';
 import 'package:larifood_app/app/modules/splash/page.dart';
 import 'package:larifood_app/app/modules/update_profile/binding.dart';
@@ -47,6 +49,11 @@ abstract class AppPages {
       name: Routes.FORGOT_PASSWORD,
       page: () => ForgotPasswordPage(),
       binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: Routes.RESET_PASSWORD,
+      page: () => ResetPasswordPage(),
+      binding: ResetPasswordBinding(),
     ),
     GetPage(
       name: Routes.ANOTHER_PROFILE,
