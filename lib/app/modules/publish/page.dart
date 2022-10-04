@@ -116,7 +116,7 @@ class PublishPage extends GetView<PublishController> {
                       onChanged: controller.togglePrivacy,
                       checkColor: Colors.white,
                       activeColor: Colors.red,
-                      title: Text('Pública'),
+                      title: Text('Privada'),
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                   ),

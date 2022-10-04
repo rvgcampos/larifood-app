@@ -160,22 +160,48 @@ class ProfilePage extends GetView<ProfileController> {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Container(
                   width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Obx(
-                        () => Text(
-                          controller.ownProfile.value == null
-                              ? ''
-                              : controller.ownProfile.value!.name,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                      Flexible(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Obx(
+                              () => Text(
+                                controller.ownProfile.value == null
+                                    ? ''
+                                    : controller.ownProfile.value!.name,
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Obx(
+                              () => Text(
+                                controller.ownProfile.value == null
+                                    ? ''
+                                    : controller.ownProfile.value!.description,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Obx(
-                        () => Text(
-                          controller.ownProfile.value == null
-                              ? ''
-                              : controller.ownProfile.value!.description,
+                      Flexible(
+                        flex: 1,
+                        child: Obx(
+                          () => CheckboxListTile(
+                            value: controller.isPrivate.value,
+                            contentPadding: EdgeInsets.zero,
+                            controlAffinity: ListTileControlAffinity.leading,
+                            title: Text(
+                              'Privadas',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onChanged: (val) {
+                              controller.onlyPrivate();
+                            },
+                            activeColor: Colors.red,
+                          ),
                         ),
                       )
                     ],
@@ -193,10 +219,9 @@ class ProfilePage extends GetView<ProfileController> {
                               controller.ownProfile.value!.recipes.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 20,
-                            mainAxisExtent: 120
-                          ),
+                                  crossAxisCount: 3,
+                                  crossAxisSpacing: 20,
+                                  mainAxisExtent: 120),
                           itemBuilder: (ctx, index) {
                             var recipe =
                                 controller.ownProfile.value!.recipes[index];

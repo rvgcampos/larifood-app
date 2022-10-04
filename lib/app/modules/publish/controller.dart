@@ -59,7 +59,7 @@ class PublishController extends GetxController {
   var image = File('').obs;
 
   var isFilled = RxBool(false);
-  var isPrivate = RxBool(true);
+  var isPrivate = RxBool(false);
 
   final RecipeApi recipeApi;
   final UtilsApi utilsApi;
