@@ -70,4 +70,12 @@ class UserApi extends Api {
 
     return response.body;
   }
+
+  Future deleteAvatar() async {
+    var response = errorHandler(await delete(
+      '/avatar/users',
+    ));
+
+    return response.body;
+  }
 }

@@ -6,6 +6,12 @@ import 'package:larifood_app/app/data/providers/search.dart';
 import 'package:larifood_app/app/modules/search/models/user_search.dart';
 
 class SearchController extends GetxController {
+  @override
+  void onInit() {
+    selectedSearchType.value = 'Receitas pelo nome';
+    super.onInit();
+  }
+
   var search = TextEditingController().obs;
 
   var searchTypes = <String>[

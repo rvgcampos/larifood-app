@@ -38,24 +38,45 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
               children: [
                 Row(
                   children: [
-                    Obx(
-                      () => controller.avatar.value != ''
-                          ? controller.image.value.path == ''
-                              ? Image.network(
-                                  controller.avatar.value,
-                                  height: 100,
-                                )
-                              : Image.file(
-                                  controller.image.value,
-                                  height: 100,
-                                )
-                          : const Center(
-                              child: Icon(
-                                Icons.person,
-                                color: Colors.red,
-                                size: 100,
-                              ),
-                            ),
+                    Column(
+                      children: [
+                        Obx(
+                          () => controller.avatar.value != ''
+                              ? controller.image.value.path == ''
+                                  ? Image.network(
+                                      controller.avatar.value,
+                                      height: 100,
+                                    )
+                                  : Image.file(
+                                      controller.image.value,
+                                      height: 100,
+                                    )
+                              : controller.image.value.path != ''
+                                  ? Image.file(
+                                      controller.image.value,
+                                      height: 100,
+                                    )
+                                  : const Center(
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Colors.red,
+                                        size: 100,
+                                      ),
+                                    ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            controller.deleteAvatar();
+                          },
+                          child: Icon(
+                            Icons.remove_circle_outline_outlined,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(
                       width: 20,

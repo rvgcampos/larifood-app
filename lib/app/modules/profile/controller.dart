@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:larifood_app/app/data/models/logged_user.dart';
@@ -23,6 +24,7 @@ class ProfileController extends GetxController {
   var ownProfile = Rxn<OwnProfile>();
   var isPrivate = false.obs;
   var recipes = <Recipe>[];
+  var searchString = TextEditingController().obs;
 
   final UserRepository userRepository;
 
@@ -43,6 +45,25 @@ class ProfileController extends GetxController {
             .where(
                 (element) => element.isPrivate == 0 || element.isPrivate == 1)
             .toList();
+      });
+    }
+  }
+
+  search() {
+    ownProfile.value!.recipes = recipes;
+
+    if (searchString.value.text != '') {
+      ownProfile.update((val) {
+        val!.recipes = ownProfile.value!.recipes
+            .where((element) => element.name
+                .toLowerCase()
+                .contains(searchString.value.text.toLowerCase()))
+            .toList();
+      });
+    } else {
+      ownProfile.update((val) {
+        val!.recipes =
+            ownProfile.value!.recipes.where((element) => true).toList();
       });
     }
   }

@@ -12,7 +12,6 @@ class SplashController extends GetxController {
     final box = GetStorage();
 
     try {
-      
       final initialLink = await getInitialLink();
       print(initialLink);
 
@@ -22,8 +21,7 @@ class SplashController extends GetxController {
         Get.toNamed(Routes.RESET_PASSWORD, arguments: [
           {'token': token}
         ]);
-      return;
-
+        return;
       }
     } on PlatformException {}
 
@@ -31,7 +29,7 @@ class SplashController extends GetxController {
       var token = box.read('token') as String;
       if (token != '') {
         var response = await repository.getDataAboutMe(token);
-        print(response);
+        print('responseAboutMe ' + response);
         if (response['code'] != 'BAD_REQUEST') {
           var responseMap = response as Map<String, dynamic>;
           responseMap['token'] = {};
@@ -42,14 +40,15 @@ class SplashController extends GetxController {
           isInvalidToken = true;
         }
       }
-      super.onInit();
     }
+    super.onInit();
   }
 
   var isInvalidToken = false;
 
   @override
   void onReady() {
+    print('sadsa');
     print(isInvalidToken);
     if (box.read('token') == null ||
         box.read('token') == '' ||

@@ -140,6 +140,7 @@ class ReelsPage extends GetView<ReelsController> {
                                             recipe.value.usersLikes
                                                 ? Icons.favorite
                                                 : Icons.favorite_border_outlined,
+                                                 size: 26,
                                             color: Colors.red,
                                           ),
                                         ),

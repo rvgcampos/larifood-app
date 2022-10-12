@@ -63,6 +63,13 @@ class RecipePage extends GetView<RecipeController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      // controller.banner == null
+                      //     ? Container()
+                      //     : Container(
+                      //         child: AdWidget(
+                      //           ad: controller.banner!,
+                      //         ),
+                      //       ),
                       controller.recipe.value!.avatar == null
                           ? Icon(
                               Icons.receipt_long_outlined,
@@ -76,24 +83,46 @@ class RecipePage extends GetView<RecipeController> {
                                 height: 250,
                               ),
                             ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: RichText(
-                          textAlign: TextAlign.end,
-                          text: TextSpan(
-                            style: TextStyle(color: Colors.black, fontSize: 18),
-                            children: [
-                              TextSpan(text: 'Publicada por '),
-                              TextSpan(
-                                text: controller.recipe.value!.user!.username,
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Obx(
+                              () => CheckboxListTile(
+                                value: controller.recipe.value!.isPrivate == 1
+                                    ? true
+                                    : false,
+                                contentPadding: EdgeInsets.zero,
+                                onChanged: (val) {},
+                                checkColor: Colors.white,
+                                activeColor: Colors.red,
+                                title: Text('Privada'),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: RichText(
+                              textAlign: TextAlign.end,
+                              text: TextSpan(
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 18),
+                                children: [
+                                  TextSpan(text: 'Publicada por '),
+                                  TextSpan(
+                                    text:
+                                        controller.recipe.value!.user!.username,
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Label(label: 'Ingredientes'),
                       ListView.builder(
@@ -146,12 +175,21 @@ class RecipePage extends GetView<RecipeController> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      imageUrl,
-                                      fit: BoxFit.cover,
-                                      height: 80,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.offNamed(Routes.RECIPE,
+                                          arguments: [
+                                            {'id': recipe.id}
+                                          ],
+                                          preventDuplicates: false);
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(
+                                        imageUrl,
+                                        fit: BoxFit.cover,
+                                        height: 80,
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -240,7 +278,8 @@ class RecipePage extends GetView<RecipeController> {
                                       ],
                                     ),
                                   ),
-                                  controller.loggedUserUser.id == comment.id
+                                  controller.loggedUserUser.id ==
+                                          comment.user.id
                                       ? GestureDetector(
                                           onTap: () {
                                             controller.deleteComment(

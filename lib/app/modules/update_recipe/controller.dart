@@ -154,34 +154,24 @@ class UpdateRecipeController extends GetxController {
       prepareModeToSend.add(element.toJson());
     });
     data['prepareModes'] = prepareModeToSend;
-    // print(data);
     var response = await recipeApi.updateRecipe(idRecipe.value, data);
-    // print(response);
 
-    int index = image.value.path.indexOf('/cache/');
-    print(image.value.path.substring(index + 7));
+    if (avatar != '') {
+      int index = image.value.path.indexOf('/cache/');
+      print(image.value.path.substring(index + 7));
 
-    var recipeId = response['recipe']['id'];
+      var recipeId = response['recipe']['id'];
 
-    // MultipartFile file = MultipartFile(
-    //   await image.value.readAsBytes(),
-    //   filename: image.value.path.substring(index + 7),
-    // );
+      var request = http.MultipartRequest(
+          'POST', Uri.parse('http://192.168.1.106:3333/photo/recipe'));
+      request.files
+          .add(await http.MultipartFile.fromPath('file', image.value.path));
 
-    // FormData form = FormData({});
-    // form.fields.add(MapEntry('recipeId', idRecipe.toString()));
-    // form.files.add(MapEntry('file', file));
-    // var responsePhoto = await recipeApi.addPhoto(form);
-    // print(responsePhoto);
-
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('http://192.168.1.106:3333/photo/recipe'));
-    request.files
-        .add(await http.MultipartFile.fromPath('file', image.value.path));
-
-    request.fields['idRecipe'] = recipeId.toString();
-    var res = await request.send();
-    print(res.reasonPhrase);
+      request.fields['idRecipe'] = recipeId.toString();
+      var res = await request.send();
+      print(res.reasonPhrase);
+    }
+    // Get.offNamed(Routes.PROFILE,preventDuplicates: true);
     Get.back();
   }
 }

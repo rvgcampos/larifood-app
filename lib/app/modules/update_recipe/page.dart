@@ -137,7 +137,7 @@ class UpdateRecipePage extends GetView<UpdateRecipeController> {
                       onChanged: controller.togglePrivacy,
                       checkColor: Colors.white,
                       activeColor: Colors.red,
-                      title: Text('Pública'),
+                      title: Text('Privada'),
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                   ),

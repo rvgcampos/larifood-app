@@ -25,27 +25,44 @@ class DashboardPage extends GetView<DashboardController> {
             NavigationDestination(
               icon: Icon(Icons.home_filled),
               label: 'Início',
-              selectedIcon: Icon(Icons.home_filled),
+              selectedIcon: Icon(
+                Icons.home_filled,
+                color: Colors.red,
+              ),
             ),
             NavigationDestination(
               icon: Icon(Icons.search_outlined),
               label: 'Pesquisar',
-              selectedIcon: Icon(Icons.search),
+              selectedIcon: Icon(
+                Icons.search,
+                color: Colors.red,
+              ),
             ),
             NavigationDestination(
               icon: Icon(Icons.add_outlined),
               label: 'Publicar',
-              selectedIcon: Icon(Icons.add),
+              selectedIcon: Icon(
+                Icons.add,
+                color: Colors.red,
+              ),
             ),
             NavigationDestination(
-              icon: Icon(Icons.loop_outlined),
+              icon: Icon(
+                Icons.loop_outlined,
+              ),
               label: 'Reels',
-              selectedIcon: Icon(Icons.loop),
+              selectedIcon: Icon(
+                Icons.loop,
+                color: Colors.red,
+              ),
             ),
             NavigationDestination(
               icon: Icon(Icons.person_outline),
               label: 'Perfil',
-              selectedIcon: Icon(Icons.person),
+              selectedIcon: Icon(
+                Icons.person,
+                color: Colors.red,
+              ),
             ),
           ],
         ),

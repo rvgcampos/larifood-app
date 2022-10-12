@@ -58,6 +58,12 @@ class UpdateProfileController extends GetxController {
         description.value.text.isNotEmpty;
   }
 
+  deleteAvatar() async {
+    await userApi.deleteAvatar();
+    avatar.value = '';
+    image.value = File('');
+  }
+
   updateUser() async {
     isLoading.value = true;
     await userApi.updateUser(id.value, {
