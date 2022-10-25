@@ -8,10 +8,10 @@ import 'package:larifood_app/app/widgets/input_field.dart';
 class UpdateProfilePage extends GetView<UpdateProfileController> {
   final _formKey = GlobalKey<FormState>();
 
+  UpdateProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    String imageUrl =
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -64,14 +64,14 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
                                       ),
                                     ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         GestureDetector(
                           onTap: () {
                             controller.deleteAvatar();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.remove_circle_outline_outlined,
                             color: Colors.red,
                           ),
@@ -84,14 +84,14 @@ class UpdateProfilePage extends GetView<UpdateProfileController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Renato Vinicius',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 22),
                         ),
                         GestureDetector(
                           onTap: controller.pickImage,
-                          child: Text(
+                          child: const Text(
                             'Alterar foto de perfil',
                             style: TextStyle(
                               color: Colors.red,

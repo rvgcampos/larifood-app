@@ -7,7 +7,6 @@ import 'package:larifood_app/app/data/models/own_profile.dart';
 import 'package:larifood_app/app/data/providers/user.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
-import 'package:larifood_app/app/routes/routes.dart';
 
 class UpdateProfileController extends GetxController {
   @override

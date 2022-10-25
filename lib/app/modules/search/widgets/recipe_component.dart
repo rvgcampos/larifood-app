@@ -7,12 +7,10 @@ import 'package:larifood_app/app/routes/routes.dart';
 
 class RecipeComponent extends StatelessWidget {
   final Recipe recipe;
-  const RecipeComponent({required this.recipe});
+  const RecipeComponent({super.key, required this.recipe});
 
   @override
   Widget build(BuildContext context) {
-    String imageUrl =
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return GestureDetector(
       onTap: () {
         Get.toNamed(Routes.RECIPE, arguments: [
@@ -35,7 +33,7 @@ class RecipeComponent extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: recipe.avatar == null
-                      ? Icon(
+                      ? const Icon(
                           Icons.abc,
                           size: 100,
                         )
@@ -45,7 +43,7 @@ class RecipeComponent extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -54,7 +52,7 @@ class RecipeComponent extends StatelessWidget {
                     children: [
                       Text(
                         recipe.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
                         ),

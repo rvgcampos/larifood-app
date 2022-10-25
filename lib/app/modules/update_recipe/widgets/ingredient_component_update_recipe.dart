@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 import 'package:larifood_app/app/modules/recipe/models/ingredient.dart';
-import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/widgets/input_field_add.dart';
-import 'package:larifood_app/app/widgets/input_field_dropdown.dart';
 import 'package:larifood_app/app/widgets/input_field_dropdown_add.dart';
 
 class IngredientComponentUpdateRecipe extends StatelessWidget {
@@ -14,6 +9,7 @@ class IngredientComponentUpdateRecipe extends StatelessWidget {
   Map<String, int> ingredientsUnitsMap;
 
   IngredientComponentUpdateRecipe({
+    super.key,
     required this.ingredient,
     required this.ingredientUnits,
     required this.ingredientsUnitsMap,

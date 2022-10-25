@@ -9,7 +9,7 @@ const baseUrl = 'http://gerador-nomes.herokuapp.com/nomes/10';
 class Api extends GetConnect {
   @override
   void onInit() {
-    httpClient.baseUrl = 'http://192.168.1.106:3333';
+    httpClient.baseUrl = 'http://192.168.1.133:3333';
     // httpClient.baseUrl = 'http://192.168.24.235:3333';
 
     final box = GetStorage();

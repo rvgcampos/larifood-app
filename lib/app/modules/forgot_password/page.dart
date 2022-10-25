@@ -22,7 +22,7 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                 padding: const EdgeInsets.only(top: 60, bottom: 30),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              Text(
+            const  Text(
                 'Esqueceu a senha?',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -30,14 +30,14 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                   color: Colors.black87,
                 ),
               ),
-              Text(
+            const  Text(
                 'Informe o seu e-mail abaixo para que possamos enviar as instruções de mudança de senha.',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
                 ),
               ),
-              SizedBox(
+        const      SizedBox(
                 height: 22,
               ),
               Form(
@@ -80,8 +80,8 @@ class ForgotPasswordPage extends GetView<ForgotPasswordController> {
                             onTap: () {
                               Get.toNamed(Routes.LOGIN);
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 16),
+                            child: const Padding(
+                              padding: EdgeInsets.only(top: 16),
                               child: Text(
                                 'Login',
                                 style: TextStyle(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:larifood_app/app/data/models/own_profile.dart';
 import 'package:larifood_app/app/modules/profile/controller.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
@@ -8,8 +7,6 @@ import 'package:larifood_app/app/widgets/input_field.dart';
 class ProfilePage extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
-    String imageUrl =
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return Scaffold(
       appBar: AppBar(
         title: Obx(
@@ -85,7 +82,7 @@ class ProfilePage extends GetView<ProfileController> {
                               backgroundColor: Colors.transparent,
                             );
                           } else {
-                            return Icon(
+                            return const Icon(
                               Icons.person,
                               size: 100,
                             );
@@ -95,7 +92,7 @@ class ProfilePage extends GetView<ProfileController> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -107,13 +104,13 @@ class ProfilePage extends GetView<ProfileController> {
                                 : controller
                                     .ownProfile.value!.count.recipesCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                             ),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Receitas',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -128,11 +125,11 @@ class ProfilePage extends GetView<ProfileController> {
                                 : controller
                                     .ownProfile.value!.count.followerCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Seguidores',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -147,11 +144,11 @@ class ProfilePage extends GetView<ProfileController> {
                                 : controller
                                     .ownProfile.value!.count.followingCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Seguindo',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -161,7 +158,8 @@ class ProfilePage extends GetView<ProfileController> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Container(
                   width: double.infinity,
                   child: Row(
@@ -177,7 +175,8 @@ class ProfilePage extends GetView<ProfileController> {
                                 controller.ownProfile.value == null
                                     ? ''
                                     : controller.ownProfile.value!.name,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             Obx(
@@ -197,7 +196,7 @@ class ProfilePage extends GetView<ProfileController> {
                             value: controller.isPrivate.value,
                             contentPadding: EdgeInsets.zero,
                             controlAffinity: ListTileControlAffinity.leading,
-                            title: Text(
+                            title: const Text(
                               'Privadas',
                               style: TextStyle(color: Colors.black),
                             ),
@@ -221,7 +220,7 @@ class ProfilePage extends GetView<ProfileController> {
                     onTap: () {
                       controller.search();
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.search,
                       color: Colors.red,
                       size: 30,

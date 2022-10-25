@@ -19,7 +19,7 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.only(top: 60, bottom: 30),
               child: Image.asset('assets/images/logo.png'),
             ),
-            Text(
+            const Text(
               'Login',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -27,14 +27,14 @@ class LoginPage extends GetView<LoginController> {
                 color: Colors.black87,
               ),
             ),
-            Text(
+            const Text(
               'Por favor, informe os detalhes abaixo',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black87,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32,
             ),
             Padding(
@@ -64,8 +64,8 @@ class LoginPage extends GetView<LoginController> {
                           obscureText: controller.isHide.value,
                           icon: GestureDetector(
                             child: controller.isHide.value
-                                ? Icon(Icons.lock_open)
-                                : Icon(Icons.lock_outline),
+                                ? const Icon(Icons.lock_open)
+                                : const Icon(Icons.lock_outline),
                             onTap: () {
                               controller.togglePassword();
                             },
@@ -76,7 +76,7 @@ class LoginPage extends GetView<LoginController> {
                         onTap: () {
                           Get.toNamed(Routes.FORGOT_PASSWORD);
                         },
-                        child: Text(
+                        child: const Text(
                           'Esqueceu a senha? Clique aqui',
                           textAlign: TextAlign.end,
                           style: TextStyle(
@@ -105,7 +105,7 @@ class LoginPage extends GetView<LoginController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
+                          const Text(
                             'Não tem conta? ',
                             style: TextStyle(
                               fontSize: 18,
@@ -116,7 +116,7 @@ class LoginPage extends GetView<LoginController> {
                             onTap: () {
                               Get.toNamed(Routes.REGISTER);
                             },
-                            child: Text(
+                            child: const Text(
                               'Cadastre-se',
                               style: TextStyle(
                                 color: Colors.red,

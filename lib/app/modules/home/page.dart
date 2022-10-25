@@ -86,14 +86,24 @@ class HomePage extends GetView<HomeController> {
                                               recipe.value.user!.avatar!),
                                           backgroundColor: Colors.transparent,
                                         ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    recipe.value.user!.username,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                        Routes.ANOTHER_PROFILE,
+                                        arguments: [
+                                          {'id': recipe.value.user!.id}
+                                        ],
+                                      );
+                                    },
+                                    child: Text(
+                                      recipe.value.user!.username,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   )
                                 ],

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
-import 'package:larifood_app/app/data/models/recipe.dart';
-import 'package:larifood_app/app/data/models/user.dart';
 import 'package:larifood_app/app/modules/search/models/user_search.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class UserComponent extends StatelessWidget {
   final UserSearch user;
-  const UserComponent({required this.user});
+  const UserComponent({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,7 @@ class UserComponent extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: user.avatar == null
-                      ? Icon(
+                      ? const Icon(
                           Icons.abc,
                           size: 50,
                         )
@@ -46,7 +42,7 @@ class UserComponent extends StatelessWidget {
                           width: 100,
                         ),
                 ),
-                SizedBox(
+              const  SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -55,14 +51,14 @@ class UserComponent extends StatelessWidget {
                     children: [
                       Text(
                         user.username,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22,
                         ),
                       ),
                       Text(
                         user.name,
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       )
                     ],
                   ),

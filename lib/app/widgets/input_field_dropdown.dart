@@ -10,6 +10,7 @@ class InputFieldDropdown extends StatelessWidget {
   String hintText;
 
   InputFieldDropdown({
+    super.key,
     required this.values,
     required this.hintText,
     this.validationBuilder,
@@ -32,31 +33,31 @@ class InputFieldDropdown extends StatelessWidget {
           hint: FittedBox(
             child: Text(
               hintText,
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
-          style: TextStyle(color: Colors.grey, fontSize: 16),
+          style: const TextStyle(color: Colors.grey, fontSize: 16),
           iconEnabledColor: Colors.red,
           decoration: InputDecoration(
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
+              borderSide: const BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(10),
             ),
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
             filled: true,
             fillColor: Colors.grey[300],
-            errorStyle: TextStyle(),
+            errorStyle: const TextStyle(),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent, width: 0)),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -67,7 +68,7 @@ class InputFieldDropdown extends StatelessWidget {
                 value: item,
                 child: Text(
                   item,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
               );
             },

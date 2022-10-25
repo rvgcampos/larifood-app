@@ -39,21 +39,38 @@ class BookmarkPage extends GetView<BookmarkController> {
                           {'id': recipe.id}
                         ]);
                       },
-                      child: SizedBox(
-                        height: 80,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: recipe.avatar == null
-                              ? const Icon(
-                                  Icons.image_outlined,
-                                  size: 60,
-                                )
-                              : Image.network(
-                                  recipe.avatar!,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            height: 80,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: recipe.avatar == null
+                                  ? const Icon(
+                                      Icons.image_outlined,
+                                      size: 60,
+                                    )
+                                  : Image.network(
+                                      recipe.avatar!,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: -2,
+                            child: GestureDetector(
+                              onTap: (){
+                                             controller.favorite(recipe.id!);
+                              },
+                                child: Icon(
+                              Icons.remove_circle_rounded,
+                              color: Colors.red,
+                              size: 30,
+                            )),
+                          )
+                        ],
                       ),
                     ),
                     // Text(

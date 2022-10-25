@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,12 +12,52 @@ class SplashController extends GetxController {
   void onInit() async {
     final box = GetStorage();
 
+    // try {
+    //   final initialLink = await getInitialLink();
+    //   print(initialLink);
+
+    //   if (initialLink != null) {
+    //     print(initialLink.substring(18));
+    //     var token = initialLink.substring(18);
+    //     Get.toNamed(Routes.RESET_PASSWORD, arguments: [
+    //       {'token': token}
+    //     ]);
+    //     return;
+    //   }
+    // } on PlatformException {}
+
+    // if (box.read('token') != null) {
+    //   var token = box.read('token') as String;
+    //   if (token != '') {
+    //     var response = await repository.getDataAboutMe(token);
+    //     print('responseAboutMe ' + response.toString());
+    //     if (response['code'] != 'BAD_REQUEST') {
+    //       try {
+    //         var responseMap = response as Map<String, dynamic>;
+    //         responseMap['token'] = {};
+    //         responseMap['token']['token'] = token;
+    //         Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
+    //         Get.toNamed(Routes.DASHBOARD);
+    //       } catch (e) {}
+    //     } else {
+    //       isInvalidToken = true;
+    //     }
+    //   }
+    // }
+    super.onInit();
+  }
+
+  var isInvalidToken = false;
+
+  @override
+  void onReady() async {
+
     try {
       final initialLink = await getInitialLink();
-      print(initialLink);
+      debugPrint(initialLink);
 
       if (initialLink != null) {
-        print(initialLink.substring(18));
+        debugPrint(initialLink.substring(18));
         var token = initialLink.substring(18);
         Get.toNamed(Routes.RESET_PASSWORD, arguments: [
           {'token': token}
@@ -25,31 +66,26 @@ class SplashController extends GetxController {
       }
     } on PlatformException {}
 
+    
     if (box.read('token') != null) {
       var token = box.read('token') as String;
       if (token != '') {
         var response = await repository.getDataAboutMe(token);
-        print('responseAboutMe ' + response);
+        print('responseAboutMe ' + response.toString());
         if (response['code'] != 'BAD_REQUEST') {
-          var responseMap = response as Map<String, dynamic>;
-          responseMap['token'] = {};
-          responseMap['token']['token'] = token;
-          Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
-          Get.toNamed(Routes.DASHBOARD);
+          try {
+            var responseMap = response as Map<String, dynamic>;
+            responseMap['token'] = {};
+            responseMap['token']['token'] = token;
+            Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
+            Get.toNamed(Routes.DASHBOARD);
+          } catch (e) {}
         } else {
           isInvalidToken = true;
         }
       }
     }
-    super.onInit();
-  }
 
-  var isInvalidToken = false;
-
-  @override
-  void onReady() {
-    print('sadsa');
-    print(isInvalidToken);
     if (box.read('token') == null ||
         box.read('token') == '' ||
         isInvalidToken == true) {

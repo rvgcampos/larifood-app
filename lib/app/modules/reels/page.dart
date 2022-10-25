@@ -4,10 +4,10 @@ import 'package:larifood_app/app/modules/reels/controller.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class ReelsPage extends GetView<ReelsController> {
+  const ReelsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    String imageUrl =
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
@@ -70,7 +70,7 @@ class ReelsPage extends GetView<ReelsController> {
                               Row(
                                 children: [
                                   recipe.value.user!.avatar == null
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.person,
                                           color: Colors.white,
                                         )
@@ -80,12 +80,12 @@ class ReelsPage extends GetView<ReelsController> {
                                               recipe.value.user!.avatar!),
                                           backgroundColor: Colors.transparent,
                                         ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
                                     recipe.value.user!.username,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
@@ -103,7 +103,7 @@ class ReelsPage extends GetView<ReelsController> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: recipe.value.avatar == null
-                                  ? Icon(
+                                  ? const Icon(
                                       Icons.receipt_outlined,
                                       size: 200,
                                     )
@@ -125,7 +125,7 @@ class ReelsPage extends GetView<ReelsController> {
                                 children: [
                                   Text(
                                     recipe.value.name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -139,8 +139,9 @@ class ReelsPage extends GetView<ReelsController> {
                                           child: Icon(
                                             recipe.value.usersLikes
                                                 ? Icons.favorite
-                                                : Icons.favorite_border_outlined,
-                                                 size: 26,
+                                                : Icons
+                                                    .favorite_border_outlined,
+                                            size: 26,
                                             color: Colors.red,
                                           ),
                                         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/modules/another_profile/controller.dart';
-import 'package:larifood_app/app/widgets/action_button.dart';
 
 class AnotherProfilePage extends GetView<AnotherProfileController> {
   @override
@@ -42,7 +41,7 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                               backgroundColor: Colors.transparent,
                             );
                           } else {
-                            return Icon(
+                            return const Icon(
                               Icons.person,
                               size: 100,
                             );
@@ -52,7 +51,7 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -63,11 +62,11 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                                 ? ''
                                 : controller.profile.value!.count.recipesCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 14),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Receitas',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -81,11 +80,11 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                                 ? ''
                                 : controller.profile.value!.count.followerCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 14),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Seguidores',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -99,11 +98,11 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                                 ? ''
                                 : controller.profile.value!.count.followingCount
                                     .toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 14),
                           ),
                         ),
-                        Text(
+                        const Text(
                           'Seguindo',
                           style: TextStyle(fontSize: 14),
                         ),
@@ -113,12 +112,13 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 child: Container(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text(
                         // controller.profile.value == null
                         //     ? ''
@@ -141,7 +141,7 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                   height: 40,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(0, 60),
+                      minimumSize: const Size(0, 60),
                       backgroundColor: Colors.red,
                     ),
                     onPressed: () {
@@ -175,28 +175,35 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: GridView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: controller.profile.value!.recipes.length,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                             crossAxisSpacing: 20,
                           ),
                           itemBuilder: (ctx, index) {
                             var recipe =
                                 controller.profile.value!.recipes[index];
-                            print(recipe.avatar);
+
                             return Column(
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: recipe.avatar == null
-                                      ? Icon(Icons.receipt)
-                                      : Image.network(
-                                          recipe.avatar!,
-                                          fit: BoxFit.cover,
-                                          height: 60,
-                                        ),
+                                SizedBox(
+                                  height: 80,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: recipe.avatar == null
+                                        ? const Icon(
+                                            Icons.receipt,
+                                            size: 60,
+                                          )
+                                        : Image.network(
+                                            recipe.avatar!,
+                                            fit: BoxFit.cover,
+                                            // height: 60,
+                                            width: 100,
+                                          ),
+                                  ),
                                 ),
                                 Text(
                                   recipe.name,

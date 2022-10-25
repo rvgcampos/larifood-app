@@ -8,6 +8,8 @@ import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class RecipePage extends GetView<RecipeController> {
+  const RecipePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     String imageUrl =
@@ -19,7 +21,7 @@ class RecipePage extends GetView<RecipeController> {
             controller.recipe.value == null
                 ? ''
                 : controller.recipe.value!.name,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
             ),
@@ -71,7 +73,7 @@ class RecipePage extends GetView<RecipeController> {
                       //         ),
                       //       ),
                       controller.recipe.value!.avatar == null
-                          ? Icon(
+                          ? const Icon(
                               Icons.receipt_long_outlined,
                               size: 200,
                             )
@@ -95,7 +97,7 @@ class RecipePage extends GetView<RecipeController> {
                                 onChanged: (val) {},
                                 checkColor: Colors.white,
                                 activeColor: Colors.red,
-                                title: Text('Privada'),
+                                title: const Text('Privada'),
                                 controlAffinity:
                                     ListTileControlAffinity.leading,
                               ),
@@ -103,22 +105,32 @@ class RecipePage extends GetView<RecipeController> {
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: RichText(
-                              textAlign: TextAlign.end,
-                              text: TextSpan(
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                                children: [
-                                  TextSpan(text: 'Publicada por '),
-                                  TextSpan(
-                                    text:
-                                        controller.recipe.value!.user!.username,
-                                    style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.bold,
+                            child: GestureDetector(
+                              onTap: () {
+                                Get.toNamed(
+                                  Routes.ANOTHER_PROFILE,
+                                  arguments: [
+                                    {'id': controller.recipe.value!.user!.id}
+                                  ],
+                                );
+                              },
+                              child: RichText(
+                                textAlign: TextAlign.end,
+                                text: TextSpan(
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 18),
+                                  children: [
+                                    const TextSpan(text: 'Publicada por '),
+                                    TextSpan(
+                                      text: controller
+                                          .recipe.value!.user!.username,
+                                      style: const TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -194,7 +206,7 @@ class RecipePage extends GetView<RecipeController> {
                                   ),
                                   Text(
                                     recipe.name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   )
@@ -227,7 +239,7 @@ class RecipePage extends GetView<RecipeController> {
                           onTap: () {
                             controller.addComment();
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.send_sharp,
                             color: Colors.red,
                           ),
@@ -246,7 +258,7 @@ class RecipePage extends GetView<RecipeController> {
                               return Row(
                                 children: [
                                   comment.user.avatar == null
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.person,
                                           size: 40,
                                         )
@@ -255,7 +267,7 @@ class RecipePage extends GetView<RecipeController> {
                                           backgroundImage: NetworkImage(
                                               comment.user.avatar!),
                                         ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Expanded(
@@ -265,7 +277,7 @@ class RecipePage extends GetView<RecipeController> {
                                       children: [
                                         Text(
                                           comment.user.username,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Colors.red,
                                             fontSize: 22,
                                             fontWeight: FontWeight.bold,
@@ -285,7 +297,7 @@ class RecipePage extends GetView<RecipeController> {
                                             controller.deleteComment(
                                                 comment.id.toString());
                                           },
-                                          child: Icon(
+                                          child: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
                                           ),

@@ -18,7 +18,7 @@ class UserApi extends Api {
       "email": map['email'],
       "password": map['password'],
     }));
-
+ 
     return response.body;
   }
 

@@ -17,4 +17,9 @@ class BookmarkController extends GetxController {
 
   final FavoriteApi favoriteApi;
   BookmarkController(this.favoriteApi);
+
+  favorite(int id) async {
+    recipes.removeWhere((element) => element.id == id);
+    await favoriteApi.unFavorite(id.toString());
+  }
 }

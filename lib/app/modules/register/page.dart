@@ -10,11 +10,13 @@ import 'package:larifood_app/app/routes/routes.dart';
 class RegisterPage extends GetView<RegisterController> {
   final _formKey = GlobalKey<FormState>();
 
+  RegisterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Cadastre-se',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -61,8 +63,8 @@ class RegisterPage extends GetView<RegisterController> {
                     obscureText: controller.isHide.value,
                     icon: GestureDetector(
                       child: controller.isHide.value
-                          ? Icon(Icons.lock_open)
-                          : Icon(Icons.lock_outline),
+                          ? const Icon(Icons.lock_open)
+                          : const Icon(Icons.lock_outline),
                       onTap: () {
                         controller.togglePassword();
                       },
@@ -71,11 +73,11 @@ class RegisterPage extends GetView<RegisterController> {
                 ),
                 Obx(
                   () => CheckboxListTile(
-                    title: Text(
+                    title: const Text(
                         "Ao criar uma conta, você concorda com nossos termos de uso e política de privacidade."),
                     checkColor: Colors.white,
                     activeColor: Colors.red,
-                    contentPadding: EdgeInsets.all(0),
+                    contentPadding: const EdgeInsets.all(0),
                     value: controller.isChecked.value,
                     onChanged: (newValue) {
                       controller.isChecked.value = newValue!;
@@ -104,7 +106,7 @@ class RegisterPage extends GetView<RegisterController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Já tem uma conta? ',
                       style: TextStyle(
                         fontSize: 18,
@@ -115,7 +117,7 @@ class RegisterPage extends GetView<RegisterController> {
                       onTap: () {
                         Get.toNamed(Routes.LOGIN);
                       },
-                      child: Text(
+                      child: const Text(
                         'Faça login',
                         style: TextStyle(
                           color: Colors.red,

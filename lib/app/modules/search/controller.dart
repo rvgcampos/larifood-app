@@ -33,7 +33,7 @@ class SearchController extends GetxController {
     users.clear();
 
     if (selectedSearchType.value == 'Usuários') {
-      print('usuarios');
+      debugPrint('usuarios');
       var response = await searchApi.searchUsers(search.value.text);
       for (var user in (response as List)) {
         users.add(UserSearch.fromJson(user));
@@ -41,7 +41,7 @@ class SearchController extends GetxController {
     }
 
     if (selectedSearchType.value == 'Receitas pelo nome') {
-      print('Receitas pelo nome');
+      debugPrint('Receitas pelo nome');
 
       var response = await searchApi.searchRecipe(search.value.text);
       for (var recipe in (response as List)) {
@@ -50,7 +50,7 @@ class SearchController extends GetxController {
     }
 
     if (selectedSearchType.value == 'Receitas por ingredientes') {
-      print('Receitas por ingredientes');
+      debugPrint('Receitas por ingredientes');
 
       var stringSearch = search.value.text;
       var listSearch = search.value.text.split(',');
@@ -60,6 +60,6 @@ class SearchController extends GetxController {
       }
     }
 
-    print(recipes.length);
+    debugPrint(recipes.length.toString());
   }
 }

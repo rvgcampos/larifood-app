@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
-import 'package:larifood_app/app/modules/register/controller.dart';
 
 class ActionButton extends StatelessWidget {
   final bool isFilled;
@@ -13,6 +9,7 @@ class ActionButton extends StatelessWidget {
   final bool conditionalValidate;
 
   ActionButton({
+    super.key,
     required this.isFilled,
     required this.onPressed,
     required this.formKey,
@@ -24,10 +21,10 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(0, 60),
+          minimumSize: const Size(0, 60),
           backgroundColor: Colors.red,
         ),
         onPressed: isFilled
@@ -38,7 +35,7 @@ class ActionButton extends StatelessWidget {
               }
             : null,
         child: isLoading
-            ? SizedBox(
+            ? const SizedBox(
                 width: 30,
                 height: 30,
                 child: CircularProgressIndicator(
@@ -47,7 +44,7 @@ class ActionButton extends StatelessWidget {
               )
             : Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

@@ -9,6 +9,8 @@ import 'package:larifood_app/app/routes/routes.dart';
 class ResetPasswordPage extends GetView<ResetPasswordController> {
   final _formKey = GlobalKey<FormState>();
 
+  ResetPasswordPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,22 +24,22 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                 padding: const EdgeInsets.only(top: 60, bottom: 30),
                 child: Image.asset('assets/images/logo.png'),
               ),
-              Text(
-                'Esqueceu a senha?',
+             const Text(
+                'Cadastre sua nova senha',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 26,
                   color: Colors.black87,
                 ),
               ),
-              Text(
-                'Informe o seu e-mail abaixo para que possamos enviar as instruções de mudança de senha.',
+             const Text(
+                'Informe sua nova senha e clique no botão abaixo.',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black87,
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 22,
               ),
               Form(
@@ -58,7 +60,7 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                       ),
                       Obx(
                         () => controller.formError.value == 'TOKEN_EXPIRED'
-                            ? Text(
+                            ? const Text(
                                 'Token expirado',
                                 style: TextStyle(
                                   color: Colors.red,
@@ -89,8 +91,8 @@ class ResetPasswordPage extends GetView<ResetPasswordController> {
                             onTap: () {
                               Get.toNamed(Routes.LOGIN);
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 16),
+                            child: const Padding(
+                              padding: EdgeInsets.only(top: 16),
                               child: Text(
                                 'Login',
                                 style: TextStyle(

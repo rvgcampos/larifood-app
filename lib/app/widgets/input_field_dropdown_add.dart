@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
-import 'package:get/get.dart';
 
 class InputFieldDropdownAdd extends StatelessWidget {
   final ValidationBuilder? validationBuilder;
@@ -11,12 +10,12 @@ class InputFieldDropdownAdd extends StatelessWidget {
   final Function(String?)? onChanged;
 
   InputFieldDropdownAdd({
+    super.key,
     required this.values,
     this.validationBuilder,
     this.value,
     this.onChanged,
     this.hasBorder = true,
-
   });
 
   @override
@@ -26,7 +25,7 @@ class InputFieldDropdownAdd extends StatelessWidget {
       child: Theme(
         data: Theme.of(context).copyWith(splashColor: Colors.transparent),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: Colors.grey[300],
             border: hasBorder ? Border.all(color: Colors.red, width: 2) : null,
@@ -34,13 +33,12 @@ class InputFieldDropdownAdd extends StatelessWidget {
           ),
           child: DropdownButtonFormField<String>(
             onChanged: onChanged,
-
             value: value == null ? null : value!,
             isExpanded: true,
-            hint: Text('Escolha uma categoria'),
-            style: TextStyle(color: Colors.grey, fontSize: 16),
+            hint: const Text('Escolha uma categoria'),
+            style: const TextStyle(color: Colors.grey, fontSize: 16),
             iconEnabledColor: Colors.red,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: InputBorder.none,
             ),
             icon: const Icon(Icons.keyboard_arrow_down),
@@ -50,7 +48,7 @@ class InputFieldDropdownAdd extends StatelessWidget {
                   value: item,
                   child: Text(
                     item,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 );
               },

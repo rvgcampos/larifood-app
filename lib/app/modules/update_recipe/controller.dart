@@ -65,6 +65,7 @@ class UpdateRecipeController extends GetxController {
     }
 
     avatar.value = recipe.value!.avatar ?? '';
+    print(avatar.value);
 
     super.onInit();
   }
@@ -156,7 +157,7 @@ class UpdateRecipeController extends GetxController {
     data['prepareModes'] = prepareModeToSend;
     var response = await recipeApi.updateRecipe(idRecipe.value, data);
 
-    if (avatar != '') {
+    if (avatar != '' && !avatar.startsWith('http')) {
       int index = image.value.path.indexOf('/cache/');
       print(image.value.path.substring(index + 7));
 

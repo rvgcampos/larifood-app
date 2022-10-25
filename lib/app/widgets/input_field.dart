@@ -10,6 +10,7 @@ class InputField extends StatelessWidget {
   final Widget? icon;
 
   const InputField({
+    super.key,
     required this.hintText,
     required this.controller,
     this.validationBuilder,
@@ -28,28 +29,28 @@ class InputField extends StatelessWidget {
           controller: controller,
           autofocus: autofocus,
           obscureText: obscureText,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
           decoration: InputDecoration(
             // contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
+              borderSide: const BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.circular(10),
             ),
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
             filled: true,
             fillColor: Colors.grey[300],
-            errorStyle: TextStyle(),
+            errorStyle: const TextStyle(),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent, width: 0)),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red),
+              borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(10),
             ),
             hintText: hintText,

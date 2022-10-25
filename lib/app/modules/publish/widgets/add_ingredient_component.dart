@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
@@ -13,6 +11,7 @@ class AddIngredientComponent extends StatelessWidget {
   final List<String> ingredientUnits;
 
   const AddIngredientComponent({
+    super.key,
     required this.ingredientName,
     required this.ingredientQtd,
     this.ingredientUnit,
