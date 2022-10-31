@@ -74,6 +74,18 @@ class LoginPage extends GetView<LoginController> {
                           ),
                         ),
                       ),
+                      Obx(
+                        () => controller.isError.value
+                            ? const Text(
+                                'Usuário ou senha inválidos',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 14,
+                                ),
+                              )
+                            : Container(),
+                      ),
                       GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.FORGOT_PASSWORD);

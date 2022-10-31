@@ -33,9 +33,15 @@ class SearchController extends GetxController {
 
     if (selectedSearchType.value == 'Usuários') {
       debugPrint('usuarios');
-      var response = await searchApi.searchUsers(search.value.text);
-      for (var user in (response as List)) {
-        users.add(UserSearch.fromJson(user));
+      // print(search.value.text == '');
+      if (search.value.text == '') {
+        var response = await searchApi.searchUsers(' ');
+        users.add(UserSearch.fromJson(response));
+      } else {
+        var response = await searchApi.searchUsers(search.value.text);
+        for (var user in (response as List)) {
+          users.add(UserSearch.fromJson(user));
+        }
       }
     }
 

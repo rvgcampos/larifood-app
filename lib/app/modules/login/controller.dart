@@ -29,6 +29,7 @@ class LoginController extends GetxController {
 
   var email = TextEditingController().obs;
   var password = TextEditingController().obs;
+  var isError = RxBool(false);
 
   var isFilled = RxBool(false);
   var isHide = RxBool(true);
@@ -48,6 +49,8 @@ class LoginController extends GetxController {
   login() async {
     try {
       isLoading.value = true;
+      isError.value = false;
+
       Map<String, dynamic> map = {
         'email': email.value.text,
         'password': password.value.text,
@@ -66,6 +69,7 @@ class LoginController extends GetxController {
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;
+      isError.value = true;
     }
   }
 

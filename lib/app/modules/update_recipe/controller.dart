@@ -11,6 +11,7 @@ import 'package:larifood_app/app/modules/recipe/models/prepare_mode.dart';
 import 'package:larifood_app/app/modules/recipe/models/recipe.dart';
 
 import 'package:larifood_app/app/data/providers/utils.dart';
+import 'package:larifood_app/env.dart';
 
 class UpdateRecipeController extends GetxController {
   @override
@@ -63,6 +64,7 @@ class UpdateRecipeController extends GetxController {
       prepareModesList.add(prepareMode);
     }
 
+    debugPrint('Avatar no inicio ${recipe.value!.avatar}');
     avatar.value = recipe.value!.avatar ?? '';
     debugPrint(avatar.value);
 
@@ -156,20 +158,25 @@ class UpdateRecipeController extends GetxController {
     data['prepareModes'] = prepareModeToSend;
     var response = await recipeApi.updateRecipe(idRecipe.value, data);
 
-    if (avatar != '' && !avatar.startsWith('http')) {
+    if ((avatar != '' && !avatar.startsWith('http')) ||
+        image.value.path != '') {
       int index = image.value.path.indexOf('/cache/');
       debugPrint(image.value.path.substring(index + 7));
 
       var recipeId = response['recipe']['id'];
+      print('entrou');
 
+      // var request = http.MultipartRequest(
+      //     'POST', Uri.parse('http://192.168.1.133:3333/photo/recipe'));
       var request = http.MultipartRequest(
-          'POST', Uri.parse('http://192.168.1.106:3333/photo/recipe'));
+          'POST', Uri.parse('${Get.find<Env>().host}/photo/recipe'));
       request.files
           .add(await http.MultipartFile.fromPath('file', image.value.path));
 
       request.fields['idRecipe'] = recipeId.toString();
       var res = await request.send();
       debugPrint(res.reasonPhrase);
+      print('entrou2');
     }
     // Get.offNamed(Routes.PROFILE,preventDuplicates: true);
     Get.back();

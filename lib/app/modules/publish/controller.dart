@@ -10,6 +10,7 @@ import 'package:larifood_app/app/data/providers/recipe.dart';
 import 'package:larifood_app/app/data/providers/utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:larifood_app/app/routes/routes.dart';
+import 'package:larifood_app/env.dart';
 
 class PublishController extends GetxController {
   @override
@@ -60,6 +61,7 @@ class PublishController extends GetxController {
 
   var isFilled = RxBool(false);
   var isPrivate = RxBool(false);
+  var isError = RxBool(false);
 
   final RecipeApi recipeApi;
   final UtilsApi utilsApi;
@@ -109,6 +111,8 @@ class PublishController extends GetxController {
   }
 
   printRecipe() async {
+    isError.value = false;
+
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = nameRecipe.value.text;
     data['prepareTime'] = int.parse(timeRecipe.value.text);
@@ -128,7 +132,10 @@ class PublishController extends GetxController {
     data['prepareModes'] = prepareModeToSend;
     // print(data);
     var response = await recipeApi.storeRecipe(data);
-    print(response);
+    debugPrint(response['code']);
+    if (response['code'] == 'BAD_REQUEST') {
+      isError.value = true;
+    }
 
     // int index = image.value.path.indexOf('/cache/');
     // print(image.value.path.substring(index + 7));
@@ -146,15 +153,19 @@ class PublishController extends GetxController {
     // var responsePhoto = await recipeApi.addPhoto(form);
     // print(responsePhoto);
 
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('http://192.168.1.106:3333/photo/recipe'));
-    request.files
-        .add(await http.MultipartFile.fromPath('file', image.value.path));
+    if (image.value.path != '') {
+      var request = http.MultipartRequest(
+          'POST', Uri.parse('${Get.find<Env>().host}/photo/recipe'));
+      request.files
+          .add(await http.MultipartFile.fromPath('file', image.value.path));
 
-    request.fields['idRecipe'] = idRecipe.toString();
-    var res = await request.send();
-    print(res.reasonPhrase);
-    Get.toNamed(Routes.DASHBOARD);
+      request.fields['idRecipe'] = idRecipe.toString();
+      var res = await request.send();
+      print(res.reasonPhrase);
+    }
+
+    // Get.toNamed(Routes.DASHBOARD);
+    await Get.offNamed(Routes.HOME, id: 1);
   }
 
   var prepareModesList = <PrepareMode>[].obs;

@@ -31,7 +31,7 @@ class Recipe {
         id: json['id'],
         name: json['name'],
         prepareTime: json['prepare_time'],
-        isPrivate: json['is_private'],
+        isPrivate: json['is_private'] == true ? 1 : 0,
         createdAt: json['created_at'],
         updatedAt: json['updated_at'],
         prepareTimeUnitId: json['prepare_time_unit_id'],

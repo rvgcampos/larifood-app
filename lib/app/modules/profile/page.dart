@@ -161,7 +161,7 @@ class ProfilePage extends GetView<ProfileController> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(
@@ -218,6 +218,7 @@ class ProfilePage extends GetView<ProfileController> {
                     const EdgeInsets.only(left: 20.0, right: 20, bottom: 10),
                 child: InputField(
                   hintText: 'Pesquisar',
+                  padding: 0,
                   icon: GestureDetector(
                     onTap: () {
                       controller.search();

@@ -7,7 +7,7 @@ class UserRepository {
   UserRepository(this.api);
 
   Future store(User user) async {
-    await api.storeUser(user);
+    return await api.storeUser(user);
   }
 
   Future login(Map<String, dynamic> map) async {

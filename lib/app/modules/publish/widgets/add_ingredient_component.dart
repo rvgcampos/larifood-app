@@ -9,13 +9,15 @@ class AddIngredientComponent extends StatelessWidget {
   final TextEditingController ingredientQtd;
   final Rxn<String>? ingredientUnit;
   final List<String> ingredientUnits;
+  final bool isNotEmptyList;
 
   const AddIngredientComponent({
     super.key,
     required this.ingredientName,
     required this.ingredientQtd,
-    this.ingredientUnit,
     required this.ingredientUnits,
+    this.ingredientUnit,
+    this.isNotEmptyList = false,
   });
 
   @override
@@ -24,7 +26,8 @@ class AddIngredientComponent extends StatelessWidget {
       children: [
         InputField(
           hintText: 'Nome do ingrediente',
-          validationBuilder: ValidationBuilder().minLength(3),
+          validationBuilder:
+              isNotEmptyList ? null : ValidationBuilder().minLength(3),
           controller: ingredientName,
         ),
         Row(
@@ -33,7 +36,8 @@ class AddIngredientComponent extends StatelessWidget {
             Flexible(
               child: InputField(
                 hintText: 'Quantidade',
-                validationBuilder: ValidationBuilder().required(),
+                validationBuilder:
+                    isNotEmptyList ? null : ValidationBuilder().required(),
                 controller: ingredientQtd,
               ),
             ),
@@ -43,7 +47,8 @@ class AddIngredientComponent extends StatelessWidget {
             Flexible(
               child: InputFieldDropdown(
                 hintText: 'Unidade de medida',
-                validationBuilder: ValidationBuilder().required(),
+                validationBuilder:
+                    isNotEmptyList ? null : ValidationBuilder().required(),
                 value: ingredientUnit,
                 values: ingredientUnits,
                 hasBorder: false,

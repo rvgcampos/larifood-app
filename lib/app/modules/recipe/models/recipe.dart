@@ -40,16 +40,17 @@ class Recipe {
         id: json['id'],
         name: json['name'],
         prepareTime: json['prepare_time'],
-        isPrivate: json['is_private'],
+        isPrivate: json['is_private'] == true ? 1 : 0,
         createdAt: json['created_at'],
         updatedAt: json['updated_at'],
         prepareTimeUnitId: json['prepare_time_unit_id'],
         userId: json['user_id'],
         categoryId: json['category_id'],
-        avatar: json['avatar'] != null
-            ? ((json['avatar']['url'] as String)
-                .replaceAll('0.0.0.0', '10.0.2.2'))
-            : null,
+        avatar: json['avatar'] != null ? json['avatar']['url'] as String : null,
+        // avatar: json['avatar'] != null
+        //     ? ((json['avatar']['url'] as String)
+        //         .replaceAll('0.0.0.0', '10.0.2.2'))
+        //     : null,
         user: json['user'] != null ? User.fromJson(json['user']) : null,
         preparemodes: (json['prepareModes'] as List)
             .map((e) => PrepareMode.fromJson(e))

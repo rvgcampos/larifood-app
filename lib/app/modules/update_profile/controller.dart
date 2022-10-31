@@ -7,6 +7,7 @@ import 'package:larifood_app/app/data/models/own_profile.dart';
 import 'package:larifood_app/app/data/providers/user.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:larifood_app/env.dart';
 
 class UpdateProfileController extends GetxController {
   @override
@@ -15,7 +16,8 @@ class UpdateProfileController extends GetxController {
     name.value.text = ownProfile.name;
     username.value.text = ownProfile.username;
     email.value.text = ownProfile.email;
-    description.value.text = ownProfile.description;
+    description.value.text =
+        ownProfile.description != '' ? ownProfile.description : ' ';
 
     avatar.value = ownProfile.avatar ?? '';
     id.value = ownProfile.id.toString();
@@ -74,8 +76,11 @@ class UpdateProfileController extends GetxController {
     });
 
     if (image.value.path != '') {
+      // var request = http.MultipartRequest(
+      //     'PUT', Uri.parse('http://192.168.1.133:3333/avatar/users'));
       var request = http.MultipartRequest(
-          'PUT', Uri.parse('http://192.168.1.106:3333/avatar/users'));
+          'PUT', Uri.parse('${Get.find<Env>().host}/avatar/users'));
+
       request.files
           .add(await http.MultipartFile.fromPath('file', image.value.path));
       final box = GetStorage();

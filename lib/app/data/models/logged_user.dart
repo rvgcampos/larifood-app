@@ -21,9 +21,12 @@ class LoggedUser {
         name: json['user']['name'],
         username: json['user']['username'],
         token: json['token']['token'],
+        // avatar: json['user']['avatar'] != null
+        //     ? ((json['user']['avatar']['url'] as String)
+        //         .replaceAll('0.0.0.0', '10.0.2.2'))
+        //     : null,
         avatar: json['user']['avatar'] != null
-            ? ((json['user']['avatar']['url'] as String)
-                .replaceAll('0.0.0.0', '10.0.2.2'))
+            ? json['user']['avatar']['url'] as String
             : null,
       );
 }

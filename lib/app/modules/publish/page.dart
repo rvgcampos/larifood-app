@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/ingredient.dart';
 import 'package:larifood_app/app/data/models/prepare_mode.dart';
@@ -139,6 +140,8 @@ class PublishPage extends GetView<PublishController> {
                                       controller.selectedIngredientUnit,
                                   ingredientUnits:
                                       controller.ingredientsUnits.value,
+                                  isNotEmptyList:
+                                      controller.ingredientsList.isNotEmpty,
                                 ),
                               ),
                               ElevatedButton(
@@ -198,6 +201,10 @@ class PublishPage extends GetView<PublishController> {
                               InputField(
                                 hintText: 'Informe o passo da receita',
                                 controller: controller.prepareMode.value,
+                                // validationBuilder:
+                                //     controller.prepareModesList.isEmpty
+                                //         ? ValidationBuilder().required()
+                                //         : null,
                               ),
                               ElevatedButton(
                                 onPressed: () {
@@ -228,6 +235,14 @@ class PublishPage extends GetView<PublishController> {
                         }
                       },
                     ),
+                  ),
+                  Obx(
+                    () => controller.isError.value
+                        ? const Text(
+                            'Dados inválidos',
+                            style: TextStyle(color: Colors.red),
+                          )
+                        : Container(),
                   ),
                   Obx(
                     () => SizedBox(

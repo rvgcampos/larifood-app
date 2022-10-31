@@ -28,9 +28,12 @@ class OwnProfile {
         name: json['user']['name'],
         description: json['user']['description'] ?? '',
         email: json['user']['email'],
+        // avatar: json['user']['avatar'] != null
+        //     ? (json['user']['avatar']['url'] as String)
+        //         .replaceAll('0.0.0.0', '10.0.2.2')
+        //     : null,
         avatar: json['user']['avatar'] != null
-            ? (json['user']['avatar']['url'] as String)
-                .replaceAll('0.0.0.0', '10.0.2.2')
+            ? json['user']['avatar']['url']
             : null,
         recipes: (json['user']['recipes'] as List)
             .map((e) => Recipe.fromJson(e))

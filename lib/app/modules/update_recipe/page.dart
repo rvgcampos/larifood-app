@@ -65,23 +65,25 @@ class UpdateRecipePage extends GetView<UpdateRecipeController> {
                       //         ),
                       //       ),
                       child: Obx(
-                        () => controller.avatar.value != ''
+                        () => controller.avatar.value == ''
                             ? controller.image.value.path == ''
-                                ? Image.network(
-                                    controller.avatar.value,
-                                    height: 100,
+                                ? const Center(
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.red,
+                                      size: 100,
+                                    ),
                                   )
                                 : Image.file(
                                     controller.image.value,
                                     height: 100,
                                   )
-                            : const Center(
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.red,
-                                  size: 100,
-                                ),
-                              ),
+                            : controller.image.value.path == ''
+                                ? Image.network(controller.avatar.value)
+                                : Image.file(
+                                    controller.image.value,
+                                    height: 100,
+                                  ),
                       ),
                     ),
                   ),
@@ -160,6 +162,8 @@ class UpdateRecipePage extends GetView<UpdateRecipeController> {
                                       controller.selectedIngredientUnit,
                                   ingredientUnits:
                                       controller.ingredientsUnits.value,
+                                  isNotEmptyList:
+                                      controller.ingredientsList.isNotEmpty,
                                 ),
                               ),
                               ElevatedButton(

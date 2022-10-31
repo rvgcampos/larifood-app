@@ -71,6 +71,18 @@ class RegisterPage extends GetView<RegisterController> {
                   ),
                 ),
                 Obx(
+                  () => controller.isError.value
+                      ? const Text(
+                          'Dados inválidos',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 14,
+                          ),
+                        )
+                      : Container(),
+                ),
+                Obx(
                   () => CheckboxListTile(
                     title: const Text(
                         "Ao criar uma conta, você concorda com nossos termos de uso e política de privacidade."),

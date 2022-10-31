@@ -8,6 +8,7 @@ class InputField extends StatelessWidget {
   final bool autofocus;
   final bool obscureText;
   final Widget? icon;
+  final double? padding;
 
   const InputField({
     super.key,
@@ -17,12 +18,13 @@ class InputField extends StatelessWidget {
     this.autofocus = false,
     this.obscureText = false,
     this.icon,
+    this.padding,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: padding != null ? padding! : 8.0),
       child: Theme(
         data: Theme.of(context).copyWith(splashColor: Colors.transparent),
         child: TextFormField(

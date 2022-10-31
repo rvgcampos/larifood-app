@@ -29,9 +29,9 @@ class ActionButton extends StatelessWidget {
         ),
         onPressed: isFilled
             ? () {
-                // if (formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                 onPressed();
-                // }
+                }
               }
             : null,
         child: isLoading
