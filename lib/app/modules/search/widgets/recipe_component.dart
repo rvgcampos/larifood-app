@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/recipe.dart';
 import 'package:larifood_app/app/routes/routes.dart';
@@ -63,7 +61,7 @@ class RecipeComponent extends StatelessWidget {
                       //   style: TextStyle(fontSize: 12),
                       // ),
                       Row(
-                        children: [
+                        children: const [
                           // CircleAvatar(
                           //   radius: 10,
                           //   backgroundImage: NetworkImage(imageUrl),

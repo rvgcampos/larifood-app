@@ -9,7 +9,6 @@ import 'package:larifood_app/app/data/providers/recipe.dart';
 import 'package:larifood_app/app/modules/recipe/models/ingredient.dart';
 import 'package:larifood_app/app/modules/recipe/models/prepare_mode.dart';
 import 'package:larifood_app/app/modules/recipe/models/recipe.dart';
-import 'package:larifood_app/app/routes/routes.dart';
 
 import 'package:larifood_app/app/data/providers/utils.dart';
 
@@ -65,7 +64,7 @@ class UpdateRecipeController extends GetxController {
     }
 
     avatar.value = recipe.value!.avatar ?? '';
-    print(avatar.value);
+    debugPrint(avatar.value);
 
     super.onInit();
   }
@@ -88,7 +87,7 @@ class UpdateRecipeController extends GetxController {
       final imageTemp = File(image.path);
       this.image.value = imageTemp;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 
@@ -159,7 +158,7 @@ class UpdateRecipeController extends GetxController {
 
     if (avatar != '' && !avatar.startsWith('http')) {
       int index = image.value.path.indexOf('/cache/');
-      print(image.value.path.substring(index + 7));
+      debugPrint(image.value.path.substring(index + 7));
 
       var recipeId = response['recipe']['id'];
 
@@ -170,7 +169,7 @@ class UpdateRecipeController extends GetxController {
 
       request.fields['idRecipe'] = recipeId.toString();
       var res = await request.send();
-      print(res.reasonPhrase);
+      debugPrint(res.reasonPhrase);
     }
     // Get.offNamed(Routes.PROFILE,preventDuplicates: true);
     Get.back();

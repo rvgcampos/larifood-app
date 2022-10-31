@@ -28,12 +28,12 @@ class User {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['name'] = this.name;
-    data['username'] = this.username;
-    data['password'] = this.password;
+    final Map<String, dynamic> data = {};
+    data['id'] = id;
+    data['email'] = email;
+    data['name'] = name;
+    data['username'] = username;
+    data['password'] = password;
     return data;
   }
 }

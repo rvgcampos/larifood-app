@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/logged_user.dart';
 import 'package:larifood_app/app/data/providers/comment.dart';
 import 'package:larifood_app/app/data/providers/recipe.dart';
-import 'package:larifood_app/app/data/services/ad_mob_service.dart';
 import 'package:larifood_app/app/modules/recipe/models/recipe.dart';
 import 'package:larifood_app/app/modules/recipe/models/recipe_similar.dart';
 
@@ -19,7 +18,6 @@ class RecipeController extends GetxController {
     super.onInit();
 
     var response = await recipeApi.getSimilarities(id.toString());
-    print(response);
     for (var recipe in response) {
       similarRecipes.add(RecipeSimilar.fromJson(recipe['recipeTo']));
     }
@@ -28,7 +26,6 @@ class RecipeController extends GetxController {
   }
 
   late LoggedUser loggedUserUser;
-  // BannerAd? banner;
 
   var idRecipe = ''.obs;
   var isAuthor = false.obs;
@@ -41,15 +38,6 @@ class RecipeController extends GetxController {
 
   var comment = TextEditingController().obs;
   var isLoading = false.obs;
-
-  // void createBannerAd() {
-  //   banner = BannerAd(
-  //       size: AdSize.fullBanner,
-  //       adUnitId: AdMobService.bannerAdUnitId!,
-  //       listener: AdMobService.bannerAdListener,
-  //       request: const AdRequest())
-  //     ..load();
-  // }
 
   deleteRecipe() {
     recipeApi.deleteRecipe(idRecipe.value);

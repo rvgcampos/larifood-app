@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/repository/user_repository.dart';
@@ -32,7 +31,7 @@ class ForgotPasswordController extends GetxController {
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
       // padding: EdgeInsets.only(bottom: 20)
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
     );
   }
 }

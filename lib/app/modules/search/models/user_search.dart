@@ -25,7 +25,7 @@ class UserSearch {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['id'] = id;
     data['email'] = email;
     data['name'] = name;

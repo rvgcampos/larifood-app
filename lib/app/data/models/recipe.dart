@@ -45,7 +45,7 @@ class Recipe {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['name'] = name;
     data['prepareTime'] = prepareTime;
     data['isPrivate'] = isPrivate;

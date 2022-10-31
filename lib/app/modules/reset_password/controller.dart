@@ -27,7 +27,7 @@ class ResetPasswordController extends GetxController {
       'token': token.value,
       'password': password.value.text,
     });
-    print(response);
+    debugPrint(response);
     if (response['code'] == 'TOKEN_EXPIRED') {
       formError.value = 'TOKEN_EXPIRED';
     } else {

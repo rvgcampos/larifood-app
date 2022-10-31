@@ -4,6 +4,8 @@ import 'package:larifood_app/app/modules/bookmark/controller.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class BookmarkPage extends GetView<BookmarkController> {
+  const BookmarkPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,7 @@ class BookmarkPage extends GetView<BookmarkController> {
                               onTap: (){
                                              controller.favorite(recipe.id!);
                               },
-                                child: Icon(
+                                child:const Icon(
                               Icons.remove_circle_rounded,
                               color: Colors.red,
                               size: 30,

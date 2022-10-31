@@ -5,6 +5,8 @@ import 'package:larifood_app/app/routes/routes.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
 
 class ProfilePage extends GetView<ProfileController> {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -160,7 +162,7 @@ class ProfilePage extends GetView<ProfileController> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

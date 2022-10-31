@@ -14,6 +14,8 @@ import 'package:larifood_app/app/modules/search/page.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class DashboardPage extends GetView<DashboardController> {
+  const DashboardPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +76,7 @@ class DashboardPage extends GetView<DashboardController> {
           if (settings.name == '/home') {
             return GetPageRoute(
               routeName: Routes.HOME,
-              page: () => HomePage(),
+              page: () =>const HomePage(),
               binding: HomeBinding(),
             );
           } else if (settings.name == '/search') {
@@ -92,15 +94,17 @@ class DashboardPage extends GetView<DashboardController> {
           } else if (settings.name == '/reels') {
             return GetPageRoute(
               routeName: Routes.REELS,
-              page: () => ReelsPage(),
+              page: () => const ReelsPage(),
               binding: ReelsBinding(),
             );
           } else if (settings.name == '/profile') {
             return GetPageRoute(
               routeName: Routes.PROFILE,
-              page: () => ProfilePage(),
+              page: () =>const ProfilePage(),
               binding: ProfileBinding(),
             );
+          } else {
+            return null;
           }
         },
       ),

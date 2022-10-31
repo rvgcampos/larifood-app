@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import 'package:get/get.dart';
-import 'package:larifood_app/app/data/models/User.dart';
 import 'package:larifood_app/app/data/providers/api.dart';
 
 class FeedApi extends Api {

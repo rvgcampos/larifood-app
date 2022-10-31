@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:larifood_app/app/modules/another_profile/controller.dart';
 
 class AnotherProfilePage extends GetView<AnotherProfileController> {
+  const AnotherProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     String imageUrl =
@@ -114,7 +116,7 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                child: Container(
+                child: SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

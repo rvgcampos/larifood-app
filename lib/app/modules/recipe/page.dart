@@ -136,7 +136,7 @@ class RecipePage extends GetView<RecipeController> {
                           ),
                         ],
                       ),
-                      Label(label: 'Ingredientes'),
+                      const Label(label: 'Ingredientes'),
                       ListView.builder(
                         itemCount: controller.recipe.value!.ingredients.length,
                         physics: const NeverScrollableScrollPhysics(),
@@ -151,7 +151,7 @@ class RecipePage extends GetView<RecipeController> {
                           );
                         },
                       ),
-                      Label(label: 'Modo de preparo'),
+                      const Label(label: 'Modo de preparo'),
                       ListView.builder(
                         itemCount: controller.recipe.value!.preparemodes.length,
                         physics: const NeverScrollableScrollPhysics(),
@@ -174,7 +174,7 @@ class RecipePage extends GetView<RecipeController> {
                           );
                         },
                       ),
-                      Label(label: 'Receitas semelhantes'),
+                      const Label(label: 'Receitas semelhantes'),
                       SizedBox(
                         height: 120,
                         child: ListView.builder(
@@ -231,7 +231,7 @@ class RecipePage extends GetView<RecipeController> {
                       //     )
                       //   ]),
                       // ),
-                      Label(label: 'Comentários'),
+                      const Label(label: 'Comentários'),
                       InputField(
                         hintText: 'Enviar um comentário',
                         controller: controller.comment.value,
@@ -285,7 +285,7 @@ class RecipePage extends GetView<RecipeController> {
                                         ),
                                         Text(
                                           comment.content,
-                                          style: TextStyle(fontSize: 20),
+                                          style: const TextStyle(fontSize: 20),
                                         ),
                                       ],
                                     ),

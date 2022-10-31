@@ -1,7 +1,3 @@
-import 'package:larifood_app/app/data/models/user.dart';
-import 'package:larifood_app/app/modules/recipe/models/ingredient.dart';
-import 'package:larifood_app/app/modules/recipe/models/prepare_mode.dart';
-
 class RecipeSimilar {
   int? id;
   String name;

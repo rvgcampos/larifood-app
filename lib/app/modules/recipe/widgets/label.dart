@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Label extends StatelessWidget {
   final String label;
   final Widget? widget;
-  Label({required this.label, this.widget, super.key});
+  const Label({required this.label, this.widget, super.key});
 
   @override
   Widget build(BuildContext context) {

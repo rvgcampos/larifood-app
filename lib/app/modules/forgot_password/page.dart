@@ -9,6 +9,8 @@ import 'package:larifood_app/app/routes/routes.dart';
 class ForgotPasswordPage extends GetView<ForgotPasswordController> {
   final _formKey = GlobalKey<FormState>();
 
+  ForgotPasswordPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

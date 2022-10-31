@@ -11,7 +11,6 @@ import 'package:larifood_app/app/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await MobileAds.instance.initialize();
 
   await GetStorage.init();
   Get.put<Api>(Api());

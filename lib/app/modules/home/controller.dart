@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/logged_user.dart';
 import 'package:larifood_app/app/data/providers/favorite.dart';
@@ -15,8 +16,8 @@ class HomeController extends GetxController {
       recipesList.add(RecipeFeedChronological.fromJson(recipe).obs);
     }
 
-    print('avatar');
-    print(loggedUserUser.avatar);
+    debugPrint('avatar');
+    debugPrint(loggedUserUser.avatar);
     super.onInit();
   }
 
@@ -26,7 +27,7 @@ class HomeController extends GetxController {
   favorite(int id) async {
     var recipe = recipesList.where((p0) => p0.value.id == id).toList()[0];
     await favoriteApi.unFavorite(id.toString());
-    print(recipe.value.usersFavorites);
+    debugPrint(recipe.value.usersFavorites.toString());
     if (recipe.value.usersFavorites) {
       await favoriteApi.unFavorite(id.toString());
 

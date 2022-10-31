@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:larifood_app/app/data/providers/api.dart';
 import 'package:larifood_app/app/data/providers/user.dart';
 import 'package:larifood_app/app/data/repository/user_repository.dart';
 import 'package:larifood_app/app/modules/register/controller.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/recipe.dart';
-import 'package:larifood_app/app/data/models/user.dart';
 import 'package:larifood_app/app/data/providers/search.dart';
 import 'package:larifood_app/app/modules/search/models/user_search.dart';
 
@@ -52,7 +51,7 @@ class SearchController extends GetxController {
     if (selectedSearchType.value == 'Receitas por ingredientes') {
       debugPrint('Receitas por ingredientes');
 
-      var stringSearch = search.value.text;
+      // var stringSearch = search.value.text;
       var listSearch = search.value.text.split(',');
       var response = await searchApi.searchRecipeByIngredients(listSearch);
       for (var recipe in response['recipes']) {

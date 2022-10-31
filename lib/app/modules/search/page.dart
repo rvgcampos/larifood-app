@@ -51,7 +51,7 @@ class SearchPage extends GetView<SearchController> {
                       return ListView.builder(
                         itemCount: controller.users.length,
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics:const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var user = controller.users[index];
                           return UserComponent(user: user);
@@ -61,7 +61,7 @@ class SearchPage extends GetView<SearchController> {
                       return ListView.builder(
                         itemCount: controller.recipes.length,
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var recipe = controller.recipes[index];
                           return RecipeComponent(recipe: recipe);

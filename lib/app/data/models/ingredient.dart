@@ -20,10 +20,10 @@ class Ingredient {
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['qtd'] = this.qtd;
-    data['qtd_units_id'] = this.qtd_units_id;
+    final Map<String, dynamic> data = {};
+    data['name'] = name;
+    data['qtd'] = qtd;
+    data['qtd_units_id'] = qtd_units_id;
     return data;
   }
 }

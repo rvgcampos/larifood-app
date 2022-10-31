@@ -5,10 +5,10 @@ import 'package:larifood_app/app/modules/home/controller.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    String imageUrl =
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80";
     return Scaffold(
       appBar: AppBar(
         title: Image.asset(
@@ -20,14 +20,12 @@ class HomePage extends GetView<HomeController> {
             padding: const EdgeInsets.only(right: 20),
             child: Row(
               children: [
-                controller.loggedUserUser == null
-                    ? Text('')
-                    : Text(controller.loggedUserUser.name),
-                SizedBox(
+                Text(controller.loggedUserUser.name),
+                const SizedBox(
                   width: 5,
                 ),
                 controller.loggedUserUser.avatar == null
-                    ? Icon(Icons.person)
+                    ? const Icon(Icons.person)
                     : CircleAvatar(
                         radius: 15,
                         backgroundImage:
@@ -61,7 +59,7 @@ class HomePage extends GetView<HomeController> {
                     children: [
                       Container(
                         height: 40,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
@@ -76,7 +74,7 @@ class HomePage extends GetView<HomeController> {
                               Row(
                                 children: [
                                   recipe.value.user!.avatar == null
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.person,
                                           color: Colors.white,
                                         )
@@ -125,7 +123,7 @@ class HomePage extends GetView<HomeController> {
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
                               child: recipe.value.avatar == null
-                                  ? Icon(
+                                  ? const Icon(
                                       Icons.receipt_outlined,
                                       size: 200,
                                     )
@@ -147,7 +145,7 @@ class HomePage extends GetView<HomeController> {
                                 children: [
                                   Text(
                                     recipe.value.name,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

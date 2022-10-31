@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/ingredient.dart';
-import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/widgets/input_field_add.dart';
-import 'package:larifood_app/app/widgets/input_field_dropdown.dart';
 import 'package:larifood_app/app/widgets/input_field_dropdown_add.dart';
 
 class IngredientComponent extends StatelessWidget {

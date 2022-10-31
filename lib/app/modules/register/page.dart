@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:larifood_app/app/modules/register/controller.dart';
 import 'package:larifood_app/app/widgets/action_button.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
-import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/routes/routes.dart';
 
 class RegisterPage extends GetView<RegisterController> {

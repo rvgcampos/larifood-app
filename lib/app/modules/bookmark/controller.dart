@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/recipe.dart';
 import 'package:larifood_app/app/data/providers/favorite.dart';
@@ -6,7 +7,7 @@ class BookmarkController extends GetxController {
   @override
   void onInit() async {
     var response = await favoriteApi.getFavorites();
-    print(response);
+    debugPrint(response);
     for (var recipe in (response as List)) {
       recipes.add(Recipe.fromJson(recipe['recipe']));
     }

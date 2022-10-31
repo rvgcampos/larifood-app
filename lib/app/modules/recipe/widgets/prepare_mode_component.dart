@@ -23,7 +23,7 @@ class PrepareModeComponent extends StatelessWidget {
               foregroundColor: Colors.white,
               child: Text(
                 index.toString(),
-                style: TextStyle(fontSize: 22),
+                style: const  TextStyle(fontSize: 22),
               ),
             ),
           ),

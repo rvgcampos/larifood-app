@@ -15,7 +15,7 @@ class ProfileController extends GetxController {
     var response = await userRepository.getDataAboutMe(loggedUserUser.token);
     ownProfile.value = OwnProfile.fromJson(response as Map<String, dynamic>);
     recipes = ownProfile.value!.recipes;
-    print(ownProfile.value);
+    debugPrint(ownProfile.value.toString());
   }
 
   final box = GetStorage();

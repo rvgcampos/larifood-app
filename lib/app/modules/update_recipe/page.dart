@@ -4,7 +4,6 @@ import 'package:larifood_app/app/modules/recipe/models/ingredient.dart';
 
 import 'package:larifood_app/app/modules/recipe/models/prepare_mode.dart';
 import 'package:larifood_app/app/modules/publish/widgets/add_ingredient_component.dart';
-import 'package:larifood_app/app/modules/publish/widgets/ingredient_component.dart';
 import 'package:larifood_app/app/modules/publish/widgets/label_recipe.dart';
 import 'package:larifood_app/app/modules/update_recipe/controller.dart';
 import 'package:larifood_app/app/modules/update_recipe/widgets/ingredient_component_update_recipe.dart';
@@ -12,10 +11,11 @@ import 'package:larifood_app/app/modules/update_recipe/widgets/input_field_dropd
 import 'package:larifood_app/app/widgets/action_button.dart';
 import 'package:larifood_app/app/widgets/input_field.dart';
 import 'package:larifood_app/app/widgets/input_field_add.dart';
-import 'package:larifood_app/app/widgets/input_field_dropdown.dart';
 
 class UpdateRecipePage extends GetView<UpdateRecipeController> {
   final _formKey = GlobalKey<FormState>();
+
+  UpdateRecipePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ class UpdateRecipePage extends GetView<UpdateRecipeController> {
                       onChanged: controller.togglePrivacy,
                       checkColor: Colors.white,
                       activeColor: Colors.red,
-                      title: Text('Privada'),
+                      title: const Text('Privada'),
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
                   ),

@@ -10,7 +10,7 @@ import 'package:uni_links/uni_links.dart';
 class SplashController extends GetxController {
   @override
   void onInit() async {
-    final box = GetStorage();
+    // final box = GetStorage();
 
     // try {
     //   final initialLink = await getInitialLink();
@@ -51,7 +51,6 @@ class SplashController extends GetxController {
 
   @override
   void onReady() async {
-
     try {
       final initialLink = await getInitialLink();
       debugPrint(initialLink);
@@ -64,14 +63,15 @@ class SplashController extends GetxController {
         ]);
         return;
       }
-    } on PlatformException {}
+    } on PlatformException {
+      debugPrint('sd');
+    }
 
-    
     if (box.read('token') != null) {
       var token = box.read('token') as String;
       if (token != '') {
         var response = await repository.getDataAboutMe(token);
-        print('responseAboutMe ' + response.toString());
+        debugPrint('responseAboutMe ' + response.toString());
         if (response['code'] != 'BAD_REQUEST') {
           try {
             var responseMap = response as Map<String, dynamic>;
@@ -79,7 +79,9 @@ class SplashController extends GetxController {
             responseMap['token']['token'] = token;
             Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
             Get.toNamed(Routes.DASHBOARD);
-          } catch (e) {}
+          } catch (e) {
+            debugPrint(e.toString());
+          }
         } else {
           isInvalidToken = true;
         }

@@ -52,12 +52,11 @@ class RecipeFeedChronological {
                 ? false
                 : true
             : false,
-        usersFavorites:
-            (json['usersFavorites'] as List).isEmpty ? false : true,
+        usersFavorites: (json['usersFavorites'] as List).isEmpty ? false : true,
       );
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = {};
     data['name'] = name;
     data['prepareTime'] = prepareTime;
     data['isPrivate'] = isPrivate;

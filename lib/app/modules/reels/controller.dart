@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/providers/feed.dart';
 import 'package:larifood_app/app/data/providers/like.dart';
@@ -15,7 +16,7 @@ class ReelsController extends GetxController {
     for (var recipe in response['userRecipesLiked']) {
       recipesList.add(RecipeFeedRecommendative.fromJson(recipe['recipe']).obs);
     }
-    print(recipesList.length);
+    debugPrint(recipesList.length.toString());
     super.onInit();
   }
 

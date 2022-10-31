@@ -78,21 +78,21 @@ class PublishController extends GetxController {
   }
 
   printIngredientsList() {
-    print('Categoria selecionada: ${selectedCategory.value}');
-    print('Nome da receita: ${nameRecipe.value.text}');
-    print(
+    debugPrint('Categoria selecionada: ${selectedCategory.value}');
+    debugPrint('Nome da receita: ${nameRecipe.value.text}');
+    debugPrint(
         'Tempo de preparo: ${timeRecipe.value.text} ${selectedIngredientUnit.value}');
 
     var c = 1;
     ingredientsList.forEach((element) {
-      print(
+      debugPrint(
           'INGREDIENTE ${c} - ${element.name} | ${element.qtd} | ${element.qtd_units_id}');
       c++;
     });
 
     c = 1;
     prepareModesList.forEach((element) {
-      print('MODO DE PREPARO ${c} - ${element.description}');
+      debugPrint('MODO DE PREPARO ${c} - ${element.description}');
       c++;
     });
   }
@@ -104,7 +104,7 @@ class PublishController extends GetxController {
       final imageTemp = File(image.path);
       this.image.value = imageTemp;
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 

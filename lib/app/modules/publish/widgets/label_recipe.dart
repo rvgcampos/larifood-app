@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class LabelRecipe extends StatelessWidget {
   final String label;
@@ -12,7 +10,7 @@ class LabelRecipe extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10),
       child: Text(
         label,
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }

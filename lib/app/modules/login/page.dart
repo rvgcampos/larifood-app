@@ -9,6 +9,8 @@ import 'package:larifood_app/app/routes/routes.dart';
 class LoginPage extends GetView<LoginController> {
   final _formKey = GlobalKey<FormState>();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
