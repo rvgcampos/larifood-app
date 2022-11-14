@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/user.dart';
 import 'package:larifood_app/app/data/repository/user_repository.dart';
-import 'package:larifood_app/app/routes/routes.dart';
 
 class RegisterController extends GetxController {
   var email = TextEditingController().obs;

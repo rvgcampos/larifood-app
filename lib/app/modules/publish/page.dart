@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:larifood_app/app/data/models/ingredient.dart';
 import 'package:larifood_app/app/data/models/prepare_mode.dart';

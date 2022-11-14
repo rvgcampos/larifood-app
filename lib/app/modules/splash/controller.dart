@@ -77,7 +77,7 @@ class SplashController extends GetxController {
             var responseMap = response as Map<String, dynamic>;
             responseMap['token'] = {};
             responseMap['token']['token'] = token;
-            Get.put(LoggedUser.fromJson(responseMap as Map<String, dynamic>));
+            Get.put(LoggedUser.fromJson(responseMap));
             Get.toNamed(Routes.DASHBOARD);
           } catch (e) {
             debugPrint(e.toString());
