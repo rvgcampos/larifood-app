@@ -13,7 +13,7 @@ import 'package:larifood_app/env.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  String env = 'prod';
+  String env = 'dev';
   String host = '';
   if (env == 'dev') {
     host = 'http://192.168.1.133:3333';

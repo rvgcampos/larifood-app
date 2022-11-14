@@ -36,6 +36,7 @@ class AddIngredientComponent extends StatelessWidget {
             Flexible(
               child: InputField(
                 hintText: 'Quantidade',
+                textInputType: TextInputType.number,
                 validationBuilder:
                     isNotEmptyList ? null : ValidationBuilder().required(),
                 controller: ingredientQtd,

@@ -9,6 +9,7 @@ class InputFieldAdd extends StatelessWidget {
   final bool obscureText;
   final Widget? icon;
   final Function(String)? onChanged;
+  final TextInputType? textInputType;
 
   InputFieldAdd({
     super.key,
@@ -19,6 +20,7 @@ class InputFieldAdd extends StatelessWidget {
     this.autofocus = false,
     this.obscureText = false,
     this.icon,
+    this.textInputType,
   });
 
   @override
@@ -32,6 +34,7 @@ class InputFieldAdd extends StatelessWidget {
           initialValue: initialValue,
           autofocus: autofocus,
           obscureText: obscureText,
+          keyboardType: textInputType,
           style: const TextStyle(fontSize: 16),
           decoration: InputDecoration(
             // contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),

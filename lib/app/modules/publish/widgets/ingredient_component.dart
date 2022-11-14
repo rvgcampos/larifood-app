@@ -31,6 +31,7 @@ class IngredientComponent extends StatelessWidget {
             Flexible(
               child: InputFieldAdd(
                 hintText: 'Qtd',
+                textInputType: TextInputType.number,
                 initialValue: ingredient.qtd.toString(),
                 onChanged: (value) {
                   ingredient.qtd = int.parse(value);

@@ -9,6 +9,7 @@ class InputField extends StatelessWidget {
   final bool obscureText;
   final Widget? icon;
   final double? padding;
+  final TextInputType? textInputType;
 
   const InputField({
     super.key,
@@ -19,6 +20,7 @@ class InputField extends StatelessWidget {
     this.obscureText = false,
     this.icon,
     this.padding,
+    this.textInputType,
   });
 
   @override
@@ -29,6 +31,7 @@ class InputField extends StatelessWidget {
         data: Theme.of(context).copyWith(splashColor: Colors.transparent),
         child: TextFormField(
           controller: controller,
+          keyboardType: textInputType,
           autofocus: autofocus,
           obscureText: obscureText,
           style: const TextStyle(fontSize: 16),

@@ -90,6 +90,7 @@ class PublishPage extends GetView<PublishController> {
                         child: Obx(
                           () => InputField(
                               hintText: 'Tempo',
+                              textInputType: TextInputType.number,
                               controller: controller.timeRecipe.value),
                         ),
                       ),

@@ -6,7 +6,7 @@ import 'package:larifood_app/app/routes/routes.dart';
 class ResetPasswordController extends GetxController {
   @override
   void onInit() {
-    // token.value = Get.arguments[0]['token'];
+    token.value = Get.arguments[0]['token'];
     super.onInit();
   }
 
@@ -27,7 +27,7 @@ class ResetPasswordController extends GetxController {
       'token': token.value,
       'password': password.value.text,
     });
-    debugPrint(response);
+    debugPrint(response.toString());
     if (response['code'] == 'TOKEN_EXPIRED') {
       formError.value = 'TOKEN_EXPIRED';
     } else {

@@ -80,7 +80,8 @@ class ProfilePage extends GetView<ProfileController> {
                             return CircleAvatar(
                               radius: 50,
                               backgroundImage: NetworkImage(
-                                  controller.ownProfile.value!.avatar!),
+                                controller.ownProfile.value!.avatar!,
+                              ),
                               backgroundColor: Colors.transparent,
                             );
                           } else {
