@@ -7,7 +7,7 @@ class BookmarkController extends GetxController {
   @override
   void onInit() async {
     var response = await favoriteApi.getFavorites();
-    debugPrint(response);
+    print(response);
     for (var recipe in (response as List)) {
       recipes.add(Recipe.fromJson(recipe['recipe']));
     }

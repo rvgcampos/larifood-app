@@ -198,7 +198,7 @@ class RecipePage extends GetView<RecipeController> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image.network(
-                                        imageUrl,
+                                        recipe.avatar!,
                                         fit: BoxFit.cover,
                                         height: 80,
                                       ),

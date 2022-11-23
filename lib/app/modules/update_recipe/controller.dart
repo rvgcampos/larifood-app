@@ -166,10 +166,11 @@ class UpdateRecipeController extends GetxController {
       var recipeId = response['recipe']['id'];
       print('entrou');
 
-      // var request = http.MultipartRequest(
-      //     'POST', Uri.parse('http://192.168.1.133:3333/photo/recipe'));
       var request = http.MultipartRequest(
-          'POST', Uri.parse('${Get.find<Env>().host}/photo/recipe'));
+          'POST', Uri.parse('http://192.168.1.133:3333/photo/recipe'));
+      // var request = http.MultipartRequest(
+      //     'POST', Uri.parse('${Get.find<Env>().host}/photo/recipe'));
+      print(image.value.path);
       request.files
           .add(await http.MultipartFile.fromPath('file', image.value.path));
 

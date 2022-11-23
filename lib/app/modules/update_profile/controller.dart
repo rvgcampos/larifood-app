@@ -76,10 +76,11 @@ class UpdateProfileController extends GetxController {
     });
 
     if (image.value.path != '') {
-      // var request = http.MultipartRequest(
-      //     'PUT', Uri.parse('http://192.168.1.133:3333/avatar/users'));
+      print('entrou');
       var request = http.MultipartRequest(
-          'PUT', Uri.parse('${Get.find<Env>().host}/avatar/users'));
+          'PUT', Uri.parse('http://192.168.1.133:3333/avatar/users'));
+      // var request = http.MultipartRequest(
+      //     'PUT', Uri.parse('${Get.find<Env>().host}/avatar/users'));
 
       request.files
           .add(await http.MultipartFile.fromPath('file', image.value.path));
@@ -88,7 +89,8 @@ class UpdateProfileController extends GetxController {
       request.headers['Authorization'] =
           'Bearer ${(box.read('token')).toString()}';
 
-      await request.send();
+      var response = await request.send();
+      print(response.reasonPhrase);
     }
 
     isLoading.value = false;

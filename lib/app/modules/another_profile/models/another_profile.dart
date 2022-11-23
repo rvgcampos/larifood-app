@@ -24,8 +24,13 @@ class AnotherProfile {
       id: json['user']['id'],
       username: json['user']['username'],
       email: json['user']['email'],
-      avatar:
-          json['user']['avatar'] != null ? json['user']['avatar']['url'] : null,
+      avatar: json['user']['avatar'] != null
+          ? ((json['user']['avatar']['url'] as String)
+              .replaceAll('0.0.0.0', '10.0.2.2'))
+          : null,
+
+      // avatar:
+      //     json['user']['avatar'] != null ? json['user']['avatar']['url'] : null,
       recipes: (json['user']['recipes'] as List)
           .map((e) => Recipe.fromJson(e))
           .toList(),

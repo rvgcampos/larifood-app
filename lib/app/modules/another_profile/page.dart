@@ -39,7 +39,8 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                           if (controller.profile.value!.avatar != null) {
                             return CircleAvatar(
                               radius: 50,
-                              backgroundImage: NetworkImage(imageUrl),
+                              backgroundImage: NetworkImage(
+                                  controller.profile.value!.avatar!),
                               backgroundColor: Colors.transparent,
                             );
                           } else {
@@ -207,8 +208,10 @@ class AnotherProfilePage extends GetView<AnotherProfileController> {
                                           ),
                                   ),
                                 ),
-                                Text(
-                                  recipe.name,
+                                FittedBox(
+                                  child: Text(
+                                    recipe.name,
+                                  ),
                                 )
                               ],
                             );

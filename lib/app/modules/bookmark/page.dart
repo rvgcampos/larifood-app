@@ -63,14 +63,14 @@ class BookmarkPage extends GetView<BookmarkController> {
                             bottom: 0,
                             right: -2,
                             child: GestureDetector(
-                              onTap: (){
-                                             controller.favorite(recipe.id!);
-                              },
-                                child:const Icon(
-                              Icons.remove_circle_rounded,
-                              color: Colors.red,
-                              size: 30,
-                            )),
+                                onTap: () {
+                                  controller.favorite(recipe.id!);
+                                },
+                                child: const Icon(
+                                  Icons.remove_circle_rounded,
+                                  color: Colors.red,
+                                  size: 30,
+                                )),
                           )
                         ],
                       ),
@@ -78,8 +78,10 @@ class BookmarkPage extends GetView<BookmarkController> {
                     // Text(
                     //   recipe.name,
                     // ),
-                    Text(
-                      recipe.name,
+                    FittedBox(
+                      child: Text(
+                        recipe.name,
+                      ),
                     )
                   ],
                 );
